@@ -1,0 +1,49 @@
+﻿@model SHPUD.Models.DiseaseViewModel
+
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        <h4 class="modal-title" id="myModalLabel">More About <strong> @Html.DisplayFor(model => model.DISEASE_NAME)</strong></h4>
+    </div>
+    <div class="modal-body">
+        <center>
+            @{
+                //var date = Model.DateAdded.ToString();
+                var image = Url.Content("/Contents/upload/Disease/");
+            }
+            <img src="@image" name="aboutme" title="" width="140" height="140" border="0" class="img-circle"></a>
+            <h3 class="media-heading">@Html.DisplayFor(model => model.DISEASE_NAME)</h3>
+            @*<label class="badge bg-green" style="font-size:16px;"><strong>@age years old </strong></label>
+                <label class="badge bg-blue" style="font-size:16px;"><strong>@Html.DisplayFor(model => model.GENDER) </strong></label>
+                <label class="badge bg-yellow" style="font-size:16px;"><strong>Date of Birth : @date.ToString()</strong></label>*@
+
+        </center>
+        <hr>
+        <center>
+            <p class="text-left">
+                <h4 style="text-align:left">Details: </h4>
+                <div class="row" style="text-align:left">
+                    <div class="col-md-2">
+            <p><strong>Symptoms :</strong></p>
+            <p><strong>Treatment : </strong></p>
+            <p><strong>Category :</strong></p>
+    </div>
+    <div class="col-md-4">
+        <p>@Html.DisplayFor(model => model.SYMPTOMS)</p>
+        <p> @Html.DisplayFor(model => model.TREATMENT)</p>
+        <p> @Html.DisplayFor(model => model.CATEGORY)</p>
+    </div>
+    <div class="col-md-6"></div>
+</div>
+
+            </p>
+<br>
+        </center>
+    </div>
+<div class="modal-footer">
+    <center>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    </center>
+</div>
+</div>
+<div>

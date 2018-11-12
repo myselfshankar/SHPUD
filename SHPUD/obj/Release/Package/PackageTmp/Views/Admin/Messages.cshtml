@@ -1,0 +1,38 @@
+﻿@model IEnumerable<SHPUD.Models.CONTACT_EMAILS>
+
+
+<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+    <i class="far fa-envelope"></i>
+    <span class="label label-success">@Model.Count()</span>
+</a>
+<ul class="dropdown-menu">
+    <li class="header">You have @Model.Count() messages</li>
+    <li>
+        <!-- inner menu: contains the actual data -->
+        <ul class="menu">
+@foreach (var item in Model)
+{
+            <li>
+                <!-- start message -->
+                <a href="#">
+                    <div class="pull-left">
+                        <img src="@Url.Content("/Contents/upload/user/default.jpg")" class="img-circle" alt="User Image">
+                    </div>
+                    <h4>
+                        @item.Name
+                        <small><i class="fa fa-clock-o"></i> @item.Phone</small>
+                    </h4>
+                    <p>@item.Message</p>
+                </a>
+            </li>
+}
+            <!-- end message -->
+        </ul>
+    </li>
+    <li class="footer"><a href="#">See All Messages</a></li>
+</ul>
+
+
+
+    
+

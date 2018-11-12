@@ -1,0 +1,37 @@
+﻿@model List<SHPUD.Models.TBL_DISEASE>
+
+<ul class="list-group">
+   @foreach (var item in ViewBag.data )
+   {
+        <a href="#" style="margin:10px"><li class="list-group-item disease-data" style="height:85px" data-did="@item.DISEASE_ID" ><b>@item.DISEASE_NAME</b> <hr style="margin-bottom:15px !important" /><span class="pull-right">@item.CATEGORY</span></li>
+        
+    </a>
+    }
+
+</ul>
+<script>
+    $(".disease-data").click(function () {
+
+     var url = window.location.origin + "/Prediction/details";
+       
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: { did: $(this).data("did") },
+            
+            success: function (data) {
+                console.log(data);
+                $("#next").trigger('click',true);
+                $("#detail").html(data);
+                
+
+            },
+            error: function (data) {
+                alert('Error Fetching Disease');
+            }
+        });
+        $("#next").data('click', 3);
+        $("#next").data("did", $(this).data("did"));
+    })
+    
+</script>

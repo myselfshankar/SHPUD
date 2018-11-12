@@ -1,0 +1,176 @@
+﻿@model SHPUD.Models.TBL_USER
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<main>
+    <div class="bg_color_2">
+        <div class="processing" id="processing" style="width:800px; margin:0 auto;z-index:1;display:none">
+            <img src="~/Contents/process.gif" />
+        </div>
+        <div class="container margin_60_35">
+            <div id="login-2">
+                <h1>Login Here !</h1>
+                @Html.Raw(ViewBag.error) 
+@using (Html.BeginForm("Login", "user", FormMethod.Post, new { @id = "userform" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="box_form clearfix">
+                        <div class="box_login">
+                            <center>
+                                <img src="@Url.Content("/Contents/img/logo.png")" width="200" height="200" />
+                            </center>
+                            <br />
+                            <h3><center>Connect to Us !</center></h3>
+                        </div>
+                        <div class="box_login last">
+
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.EMAIL, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.EMAIL, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.EMAIL, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.PASSWORD, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-12">
+                                    @Html.TextBoxFor(x => x.PASSWORD, new { @class = "form-control", @type = "password" })
+                                    @Html.ValidationMessageFor(model => model.PASSWORD, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <center>
+                                    <button class="btn_1" id="submit" type="submit"><span id="proc" style="display:none"><i class="fas fa-sync fa-spin"></i> Logging in..</span><span id="stat">Login</span></button>
+                                </center>
+                                    </div>
+                        </div>
+                    </div>
+}
+                <p class="text-center link_bright">Do not have an account yet? <a href="@Url.Action("UserRegister","User")"><strong>Register now!</strong></a></p>
+            </div>
+            <!-- /login -->
+        </div>
+    </div>
+</main>
+<script>
+    $('#userform').submit( function(e) {
+        e.preventDefault();
+        $('#submit').prop("disabled", 'disabled');
+        var formData = new FormData(this);
+        $this = $(this);
+        $.validator.unobtrusive.parse($this);
+        var isValid = $(this).valid();
+        if (!isValid) {
+            $(this).find(':submit').removeAttr('disabled');
+            $('#submit').prop("disabled", false);
+            return false;
+        }
+        else {
+            $(this).find(':submit').attr('disabled', 'disabled');
+            $('#submit').prop("disabled", false);
+
+        }
+        $.ajax({
+            url: $(this).attr("action"),
+            method:"post",
+            data: formData,
+            beforeSend: function () {
+                // setting a timeout
+                $("#loading").show();
+                $("#proc").show();
+                $("#stat").hide();
+            },
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                $(this).find(':submit').removeAttr('disabled');
+                $('#submit').prop("disabled", false);
+
+                if (data.success==true) {
+                    swal({
+                        position: 'top-end',
+                        type: 'success',
+                        title: data.successMessage,
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                    
+                    if (data.verified === false) {
+                        var url = '@Url.Action("Verify", "User")';
+                        window.location.href = url;
+                    }
+                    else {
+                        if (data.role === "admin") {
+                            var url = '@Url.Action("Index", "Admin")';
+                            window.location.href = url;
+                        }
+                        else {
+                            var url = '@Url.Action("Index", "Home")';
+                            window.location.href = url;
+                        }
+                    }
+
+                    
+
+                    $('#userform')[0].reset();
+                }
+                else {
+                    if (data.error==true) {
+
+                        swal(
+                       data.title,
+                       data.errorMessage,
+                       'error'
+                     )
+                    }
+                    else {
+                        swal(
+                        'Sorry',
+                        'Something Went wrong',
+                        'error'
+                      )
+                    }
+                }
+
+
+
+            },
+            error: function (data) {
+                $(this).find(':submit').removeAttr('disabled');
+                $('#submit').prop("disabled", false);
+                if (data.errorMessage) {
+                    alert(data.errorMessage)
+                    new PNotify({
+                        title: 'Sorry!',
+                        text: data.errorMessage,
+                        type: 'error',
+                        hide: false
+                    });
+                }
+                else
+                {
+                    $('#submit').prop("disabled", false);
+                    alert('An error occurred.');
+
+                }
+
+
+            },
+            complete: function () {
+                $('#submit').prop("disabled", false);
+                // hide image here
+                $("#loading").hide();
+                $("#proc").hide();
+                $("#stat").show();
+            }
+        });
+
+    });
+</script>

@@ -1,0 +1,203 @@
+﻿@model SHPUD.Models.TBL_USER
+
+@{
+    ViewBag.Title = "UserProfile";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<main>
+    <div id="breadcrumb">
+        <div class="container">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">User</a></li>
+                <li>Profile</li>
+                
+            </ul>
+        </div>
+    </div>
+    <!-- /breadcrumb -->
+
+    <div class="container margin_60">
+        <div class="row">
+            <div class="col-xl-8 col-lg-8">
+                <nav id="secondary_nav">
+                    <div class="container">
+                        <ul class="clearfix">
+                            <li><a href="#section_1" class="active">General info</a></li>
+                            <li class="pull-right"><a href="#section_2">Reviews</a></li>
+                            <li class="pull-right" style="margin-left:315px;opacity:1;color:white !important"><button type="button" class="btn btn-primary btn-sm" onclick="profile()">Edit Profile </button></li>
+                            <span hidden="hidden">a</span>
+                        </ul>
+                        
+                    </div>
+                    
+                </nav>
+                <div id="section_1">
+                    <div class="box_general_3">
+                        <div class="profile">
+                            <div class="row">
+                                
+                                <div class="col-lg-5 col-md-4">
+                                    <figure>
+                                        <img src="@Url.Content("/Contents/upload/User/")@Model.IMAGE" alt="" class="img-fluid">
+                                    </figure>
+                                </div>
+                                <div class="col-lg-7 col-md-8">
+                                    <small>SHPUD @Model.ROLE</small>
+                                    <h1> @Model.NAME</h1>
+                                    <b>@(2018 - Model.DOB.Year) years old</b>
+                                       
+                                    <ul class="statistic">
+                                        <li>@Model.DOB.ToShortDateString()</li>
+                                        <li>@if (@Model.GENDER == "M") { @:Male
+                                         } else {
+                                            @:Female
+                                                }
+                                        </li>
+                                    </ul>
+                                    <ul class="contacts">
+                                        <li>
+                                            <h6>Address</h6>
+                                            @Model.ADDRESS
+                                            <a href="#" target="_blank"></a>
+                                        </li>
+                                        <li>
+                                            <h6>Phone</h6> <a href="tel:// @Model.CONTACT">@Model.CONTACT</a>
+                                        </li>
+                                        <li>
+                                            <h6>Email</h6> <a href="mailto:@Model.EMAIL">@Model.EMAIL</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                       
+
+                        
+                        
+                        <!--  /wrapper_indent -->
+                    </div>
+                    <!-- /section_1 -->
+                </div>
+                <!-- /box_general -->
+
+                
+                <!-- /section_2 -->
+            </div>
+            <!-- /col -->
+            <aside class="col-xl-4 col-lg-4" id="sidebar">
+                <div class="box_general_3 booking">
+                    <form>
+                        <div class="title">
+                            <h3>Book a Visit</h3>
+                            <small>Monday to Friday 09.00am-06.00pm</small>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <input class="form-control" type="text" id="booking_date" data-lang="en" data-min-year="2017" data-max-year="2020" data-disabled-days="10/17/2017,11/18/2017">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <input class="form-control" type="text" id="booking_time" value="9:00 am">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /row -->
+                        <ul class="treatments clearfix">
+                            <li>
+                                <div class="checkbox">
+                                    <input type="checkbox" class="css-checkbox" id="visit1" name="visit1">
+                                    <label for="visit1" class="css-label">Back Pain visit <strong>$55</strong></label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="checkbox">
+                                    <input type="checkbox" class="css-checkbox" id="visit2" name="visit2">
+                                    <label for="visit2" class="css-label">Cardiovascular screen <strong>$55</strong></label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="checkbox">
+                                    <input type="checkbox" class="css-checkbox" id="visit3" name="visit3">
+                                    <label for="visit3" class="css-label">Diabetes consultation <strong>$55</strong></label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="checkbox">
+                                    <input type="checkbox" class="css-checkbox" id="visit4" name="visit4">
+                                    <label for="visit4" class="css-label">General visit <strong>$55</strong></label>
+                                </div>
+                            </li>
+                        </ul>
+                        <hr>
+                        <a href="booking-page.html" class="btn_1 full-width">Book Now</a>
+                    </form>
+                </div>
+                <!-- /box_general -->
+            </aside>
+            <!-- /asdide -->
+        </div>
+        <!-- /row -->
+    </div>
+
+    
+    <!-- /container -->
+</main>
+
+<!-- /main -->
+<!--Modal: Login / Register Form Demo-->
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false" id="editprofile">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Edit Profile</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="modalbody">
+                
+
+            </div>
+           
+        </div>
+    </div>
+</div>
+@*<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="false" id="editprofile" aria-hidden="true" style="opacity:7;">*@
+   
+
+
+        <script>
+            function profile() {
+                $.ajax({
+                    type: 'GET',
+                    url: window.location.origin + "/User/editProfile",
+                    data: '',
+                    beforeSend: function () {
+                        // setting a timeout
+                        $("#loading").show();
+                    },
+                    success: function (data) {
+                        // $("#viewlist")[0].innerHtml = data;
+                        //or
+                        $("#editprofile").modal('show');
+                        $("#modalbody").html(data);
+                        //$('#default').hide();
+                    },
+                    complete: function () {
+                        // setting a timeout
+                        $("#loading").hide();
+                    }
+                });
+                return false; //prevent default action(submit) for a button
+
+            }
+
+            
+        </script>
+     
+       

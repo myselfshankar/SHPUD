@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SHPUDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="TBL_ADMIN">
+    <Key>
+      <PropertyRef Name="ADMIN_ID" />
+    </Key>
+    <Property Name="ADMIN_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DateAdded" Type="DateTime" Precision="3" />
+    <Property Name="ADMIN_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ADDRESS" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EMAIL" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ADMIN_IMAGE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="WORK_HOSPITAL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="GENDER" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="PASSWORD" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="CONTACT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="TBL_DISEASE">
+    <Key>
+      <PropertyRef Name="DISEASE_ID" />
+    </Key>
+    <Property Name="DISEASE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DateAdded" Type="DateTime" Precision="3" />
+    <Property Name="DISEASE_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SYMPTOMS" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="CATEGORY" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="TREATMENT" Type="Int32" />
+  </EntityType>
+  <EntityType Name="TBL_DISEASE_DETAILS">
+    <Key>
+      <PropertyRef Name="DETAIL_ID" />
+    </Key>
+    <Property Name="DISEASE_ID" Type="Int32" Nullable="false" />
+    <Property Name="DISEASE_DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="TREATMENT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="SUGGESTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IMAGE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DETAIL_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="TBL_DOCTOR">
+    <Key>
+      <PropertyRef Name="DOCTOR_ID" />
+    </Key>
+    <Property Name="DOCTOR_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DateAdded" Type="DateTime" Precision="3" />
+    <Property Name="DOCTOR_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ADDRESS" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EMAIL" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="SPECIALIZATION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="DOCTOR_IMAGE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DOCUMENT" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="WORK_HOSPITAL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="GENDER" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="PASSWORD" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="CONTACT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Views" Type="Int32" />
+  </EntityType>
+  <EntityType Name="TBL_HOSPITAL">
+    <Key>
+      <PropertyRef Name="HOSPITAL_ID" />
+    </Key>
+    <Property Name="HOSPITAL_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DateAdded" Type="DateTime" Precision="3" />
+    <Property Name="HOSPITAL_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="HOSPITAL_ADDRESS" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EMAIL" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="SPECIALIZATION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="HOSPITAL_IMAGE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CONTACT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="TBL_USER">
+    <Key>
+      <PropertyRef Name="USER_ID" />
+    </Key>
+    <Property Name="USER_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DateAdded" Type="DateTime" Precision="3" />
+    <Property Name="NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ADDRESS" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PASSWORD" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EMAIL" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="GENDER" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DOB" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="CONTACT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="IMAGE" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ROLE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="STATUS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TOKEN" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="TBL_USER_HEALTH_RECORD">
+    <Key>
+      <PropertyRef Name="RECORD_ID" />
+    </Key>
+    <Property Name="RECORD_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="USER_ID" Type="Int32" Nullable="false" />
+    <Property Name="DateAdded" Type="DateTime" Precision="3" />
+    <Property Name="PREVIOUS_DISEASE" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="DOCTOR_ID" Type="Int32" />
+    <Property Name="DATE_OF_CHECKUP" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="IMAGE" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="TBL_DOCTOR_DETAILS">
+    <Key>
+      <PropertyRef Name="DETAIL_ID" />
+    </Key>
+    <Property Name="DETAIL_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DOCTOR_ID" Type="Int32" Nullable="false" />
+    <Property Name="DOCTOR_DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="DOCTOR_EDUCATION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="DOCTOR_SPECIALIZATION_DETAILS" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="SHPUDEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="TBL_ADMIN" EntityType="Self.TBL_ADMIN" />
+    <EntitySet Name="TBL_DISEASE" EntityType="Self.TBL_DISEASE" />
+    <EntitySet Name="TBL_DISEASE_DETAILS" EntityType="Self.TBL_DISEASE_DETAILS" />
+    <EntitySet Name="TBL_DOCTOR" EntityType="Self.TBL_DOCTOR" />
+    <EntitySet Name="TBL_HOSPITAL" EntityType="Self.TBL_HOSPITAL" />
+    <EntitySet Name="TBL_USER" EntityType="Self.TBL_USER" />
+    <EntitySet Name="TBL_USER_HEALTH_RECORD" EntityType="Self.TBL_USER_HEALTH_RECORD" />
+    <EntitySet Name="TBL_DOCTOR_DETAILS" EntityType="Self.TBL_DOCTOR_DETAILS" />
+    <FunctionImport Name="P_SET_USER">
+      <Parameter Name="P_NAME" Mode="In" Type="String" />
+      <Parameter Name="P_ADDRESS" Mode="In" Type="String" />
+      <Parameter Name="P_PASSWORD" Mode="In" Type="String" />
+      <Parameter Name="P_EMAIL" Mode="In" Type="String" />
+      <Parameter Name="P_GENDER" Mode="In" Type="String" />
+      <Parameter Name="P_DOB" Mode="In" Type="DateTime" />
+      <Parameter Name="P_CONTACT" Mode="In" Type="String" />
+      <Parameter Name="P_IMAGE" Mode="In" Type="String" />
+      <Parameter Name="V_OUT" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="TBL_HOSPITAL_DETAILS" EntityType="SHPUDModel.TBL_HOSPITAL_DETAILS" />
+    <EntitySet Name="CONTACT_EMAILS" EntityType="SHPUDModel.CONTACT_EMAILS" />
+    <EntitySet Name="TBL_BOOKMARK" EntityType="SHPUDModel.TBL_BOOKMARK" />
+    <EntitySet Name="TBL_BOOKING" EntityType="SHPUDModel.TBL_BOOKING" />
+  </EntityContainer>
+  <EntityType Name="TBL_HOSPITAL_DETAILS">
+    <Key>
+      <PropertyRef Name="DETAIL_ID" />
+    </Key>
+    <Property Name="HOSPITAL_ID" Type="Int32" Nullable="false" />
+    <Property Name="DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="MORE_INFO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="REMARKS" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="DETAIL_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="CONTACT_EMAILS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Remarks" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="TBL_BOOKMARK">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="Doctor_ID" Type="Int32" />
+    <Property Name="Hospital_ID" Type="Int32" />
+    <Property Name="Disease_ID" Type="Int32" />
+    <Property Name="Remarks" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="TBL_BOOKING">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="Doctor_ID" Type="Int32" />
+    <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="User_ID" Type="Int32" />
+    <Property Name="Remarks" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+</Schema>

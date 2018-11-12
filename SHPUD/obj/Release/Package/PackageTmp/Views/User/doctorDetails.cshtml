@@ -1,0 +1,168 @@
+﻿@model SHPUD.Models.DoctorViewModel
+
+@{
+    ViewBag.Title = "doctorDetails";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<main>
+    <div id="breadcrumb">
+        <div class="container">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Doctors</a></li>
+                <li>Details</li>
+            </ul>
+        </div>
+    </div>
+    <!-- /breadcrumb -->
+
+    <div class="container margin_60">
+        <div class="row">
+            <div class="col-xl-8 col-lg-8">
+                <nav id="secondary_nav">
+                    <div class="container">
+                        <ul class="clearfix">
+                            <li><a href="#section_1" class="active">General info</a></li>
+                            <li><a href="#section_2">Reviews</a></li>
+                            
+                        </ul>
+                    </div>
+                </nav>
+                <div id="section_1">
+                    <div class="box_general_3">
+                        <div class="profile">
+                            <div class="row">
+                                <div class="col-lg-5 col-md-4">
+                                    <figure>
+                                        <img src="@Url.Content("/Contents/upload/Doctor/"+Model.DOCTOR_IMAGE)" alt="" class="img-fluid">
+                                    </figure>
+                                </div>
+                                <div class="col-lg-7 col-md-8">
+                                    <small>@Model.SPECIALIZATION</small>
+                                    <h1>DR. @Model.DOCTOR_NAME</h1>
+                                    <ul class="statistic">
+                                        <li>@Model.views  Views</li>
+                                        
+                                    </ul>
+                                    
+                                    <ul class="contacts">
+                                        <li>
+                                            <h6>Address</h6>
+                                            @Html.DisplayFor(model => model.ADDRESS)
+                                            
+                                        </li>
+                                        <li>
+                                            <h6>Phone</h6> <a href="tel:// @Html.DisplayFor(model => model.CONTACT)">@Html.DisplayFor(model => model.CONTACT)</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <!-- /profile -->
+                        <div class="indent_title_in">
+                            <i class="pe-7s-user"></i>
+                            <h3>Description</h3>
+                            <p></p>
+                        </div>
+                        <div class="wrapper_indent">
+                            <p>@Model.DOCTOR_DESCRIPTION</p>
+                            <h6>Specializations</h6>
+                            <p>@Model.DOCTOR_SPECIALIZATION_DETAILS</p>
+                            <!-- /row-->
+                        </div>
+                        <!-- /wrapper indent -->
+
+                        <hr>
+
+                        <div class="indent_title_in">
+                            <i class="pe-7s-news-paper"></i>
+                            <h3>Education</h3>
+                            <p></p>
+                        </div>
+                        <div class="wrapper_indent">
+                            <p>@Model.DOCTOR_EDUCATION</p>
+                            <h2>@ViewBag.status</h2>
+                            
+                        </div>
+                        <!--  End wrapper indent -->
+
+                        <hr>
+
+                        
+                        
+                        <!--  /wrapper_indent -->
+                    </div>
+                    <!-- /section_1 -->
+                </div>
+                <!-- /box_general -->
+
+                
+                <!-- /section_2 -->
+            </div>
+            <!-- /col -->
+            <aside class="col-xl-4 col-lg-4" id="sidebar">
+                <div class="box_general_3 booking">
+                    @if (TempData["message"] != null)
+                    {
+                        <div class="title">
+                            <h3>Submitted</h3>
+                            <small></small>
+                        </div>
+                            <div class="row">
+                                @Html.Raw(TempData["message"].ToString())
+                                
+                            </div>
+                        
+                    }
+                    else
+                    {
+                        <form method="post" action="~/Doctor/Booknow/">
+                            <div class="title">
+                                <h3>Book a Visit</h3>
+                                <small>@if (TempData["errmessage"] != null)
+                                {
+                                    Html.Raw(TempData["errmessage"].ToString());
+                                }</small>
+                            </div>
+                            <div class="row">
+                                
+                                
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <input class="form-control" name="date" type="text" id="booking_date" data-lang="en" data-min-year="2017" data-max-year="2020" data-disabled-days="10/17/2017,11/18/2017">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <input type="text" value="@Model.DOCTOR_ID" style="display:none" name="doc" />
+                                        <input class="form-control" name="time" type="text" id="booking_time" value="9:00 am">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /row -->
+                            
+                            <ul class="treatments clearfix">
+                                <li><label class="label-info">Message</label><br />
+                                    <textarea name="message" style="width:100%" rows="7" required></textarea>
+                                </li>
+
+                            </ul>
+                            <hr>
+                            <button type="submit" class="btn_1 full-width">Book Now</button>
+                        </form>
+                    }
+
+                </div>
+                <!-- /box_general -->
+            </aside>
+            <!-- /asdide -->
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</main>
+<!-- /main -->

@@ -1,0 +1,411 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Find easily a doctor and book online an appointment">
+    <meta name="author" content="Ansonika">
+    <title>SHPUD-  Find Disease easily a doctor and book online an appointment</title>
+   
+    <script src="@Url.Content("/Contents/js/jquery-2.2.4.min.js")"></script>
+    
+    <!-- Favicons-->
+    <link rel="shortcut icon" href="@Url.Content("/Contents/img/logo.png")" type="image/x-icon">
+    <link rel="apple-touch-icon" type="image/x-icon" href="img/apple-touch-icon-57x57-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="img/apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="img/apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="img/apple-touch-icon-144x144-precomposed.png">
+
+    <!-- BASE CSS -->
+    
+    <link href="@Url.Content("/Contents/css/bootstrap.min.css")" rel="stylesheet">
+
+    <link href="~/Contents/css/owl.carousel.min.css" rel="stylesheet" />
+    <link href="@Url.Content("/Contents/wiz_assets/css/material-bootstrap-wizard.css")" rel="stylesheet" />
+    <script src="@Url.Content("/Contents/wiz_assets/js/material-bootstrap-wizard.js")"></script>
+    @*<script src="~/Contents/admin/js/bootstrap.min.js"></script>*@
+    <link href="@Url.Content("/Contents/css/style.css")" rel="stylesheet">
+    <link href="@Url.Content("/Contents/css/menu.css")" rel="stylesheet">
+    <link href="@Url.Content("/Contents/css/vendors.css")" rel="stylesheet">
+    <link href="@Url.Content("/Contents/css/icon_fonts/css/all_icons_min.css")" rel="stylesheet">
+    <link href="@Url.Content("/Contents/pnotify/pnotify.custom.min.css")" rel="stylesheet" />
+    <script src="~/Contents/js/sweetalert.all.js"></script>
+    <style>
+        * Absolute Center Spinner */ .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -50px 0px 0px -50px;
+            z-index: 999;
+            height: 2em;
+            width: 2em;
+            overflow: show;
+            bottom: 0;
+            right: 0;
+        }
+
+        /* Transparent Overlay */
+        .loading:before {
+            content: '';
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.3);
+        }
+
+        /* :not(:required) hides these rules from IE9 and below */
+        .loading:not(:required) {
+            /* hide "loading..." text */
+            font: 0/0 a;
+            color: transparent;
+            text-shadow: none;
+            background-color: transparent;
+            border: 0;
+        }
+
+            .loading:not(:required):after {
+                content: '';
+                display: block;
+                font-size: 10px;
+                width: 1em;
+                height: 1em;
+                margin-top: -0.5em;
+                -webkit-animation: spinner 1500ms infinite linear;
+                -moz-animation: spinner 1500ms infinite linear;
+                -ms-animation: spinner 1500ms infinite linear;
+                -o-animation: spinner 1500ms infinite linear;
+                animation: spinner 1500ms infinite linear;
+                border-radius: 0.5em;
+                -webkit-box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.5) -1.5em 0 0 0, rgba(0, 0, 0, 0.5) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
+                box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) -1.5em 0 0 0, rgba(0, 0, 0, 0.75) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
+            }
+
+        /* Animation */
+
+        @@-webkit-keyframes spinner {
+            0% {
+                -webkit-transform: rotate(0deg);
+                -moz-transform: rotate(0deg);
+                -ms-transform: rotate(0deg);
+                -o-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+                -moz-transform: rotate(360deg);
+                -ms-transform: rotate(360deg);
+                -o-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+
+        @@-moz-keyframes spinner {
+            0% {
+                -webkit-transform: rotate(0deg);
+                -moz-transform: rotate(0deg);
+                -ms-transform: rotate(0deg);
+                -o-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+                -moz-transform: rotate(360deg);
+                -ms-transform: rotate(360deg);
+                -o-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+
+        @@-o-keyframes spinner {
+            0% {
+                -webkit-transform: rotate(0deg);
+                -moz-transform: rotate(0deg);
+                -ms-transform: rotate(0deg);
+                -o-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+                -moz-transform: rotate(360deg);
+                -ms-transform: rotate(360deg);
+                -o-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+
+        @@keyframes spinner {
+            0% {
+                -webkit-transform: rotate(0deg);
+                -moz-transform: rotate(0deg);
+                -ms-transform: rotate(0deg);
+                -o-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+                -moz-transform: rotate(360deg);
+                -ms-transform: rotate(360deg);
+                -o-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+    <!-- YOUR CUSTOM CSS -->
+    <link href="@Url.Content("/Contents/css/custom.css")" rel="stylesheet">
+    <style>
+        .text-center-align{
+            position:absolute;
+            width:500px;
+            height:50px;
+            top:60%;
+            left:40%;
+            margin-left:-50px;
+            margin-top:-25px;
+        }
+        .processing{
+            position:absolute;
+            width:500px;
+            height:50px;
+            top:50%;
+            left:50%;
+            margin-left:-50px;
+            margin-top:-25px;
+        }
+    </style>
+
+   
+    
+
+</head>
+
+<body>
+    
+    <div id="preloader" class="Fixed">
+        
+        <div data-loader="circle-side"></div><br />
+        <h3 class="text-center-align">SMART HEALTH PREDICTION</h3>
+    </div>
+    <!-- /Preload-->
+
+    <div id="page">
+        <header class="header_sticky">
+            <a href="#menu" class="btn_mobile">
+                <div class="hamburger hamburger--spin" id="hamburger">
+                    <div class="hamburger-box">
+                        <div class="hamburger-inner"></div>
+                    </div>
+                </div>
+            </a>
+            <!-- /btn_mobile-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-6">
+                        <div id="logo">
+                            <a href="#" title="Find Disease"><img src="@Url.Content("/Contents/img/logo.png")" data-retina="true" alt="" width="163" height="36"></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-9 col-6">
+                        @if (Session["userid"] == null)
+                        {
+                            <ul id="top_access">
+                                <li><a data-toggle="tooltip" id="loginbtnn" title="Login" href="@Url.Action("login","User")"><i class="pe-7s-user"></i></a></li>
+                                <li><a href="@Url.Action("UserRegister","User")" data-toggle="tooltip" title="Register"><i class="pe-7s-add-user"></i></a></li>
+                            </ul>
+                        }
+                        <nav id="menu" class="main-menu">
+                            <ul>
+                                <li><span><a href="@Url.Action("Index","Home")">Home</a></span></li>
+                                <li><span><a href="@Url.Action("Start","Prediction")">Predict</a></span></li>
+                                <li><span><a href="@Url.Action("listDoctors/","User", new { type = "",location="" })">Doctors</a></span></li>
+                                <li><span><a href="@Url.Action("listHospital/","User")">Hospitals</a></span></li>
+                                @*<li><span><a href="@Url.Action("Index","Home")">Quiz</a></span></li>*@
+                                @*<li><span><a href="@Url.Action("Index","Home")">About</a></span></li>*@
+                                <li><span><a href="@Url.Action("Contact","User")">Contact</a></span></li>
+                                <li><span><a href="@Url.Action("faq","User")">FAQs</a></span></li>
+                        @if (Session["userid"] != null)
+                        {
+                            <li>
+                                <span><a href="#"><i class="icon-user"></i> @Session["firstname"].ToString()</a></span>
+                                <ul>
+                                    <li><a href="@Url.Action("UserProfile", "User")">Profile</a></li>
+                                    <li><a id="password" href="#">Change Password</a></li>
+                                    <li><a href="@Url.Action("Logout", "User")">Logout</a></li>
+            
+                                </ul>
+                            </li>
+                        }
+
+
+
+                                @*<li><span><a @Url.Action("login","User") href="@Url.Action("Index","Login")">Login</a></span></li>
+    <li><span><a href="@Url.Action("Index","Home")">Register</a></span></li>*@
+                                
+                            </ul>
+                        </nav>
+                        <!-- /main-menu -->
+                    </div>
+                </div>
+            </div>
+            <!-- /container -->
+        </header>
+
+
+        <!-- /header -->
+       <div>
+           <!--loader-->
+           <div class="loading" id="loading" style="position: fixed;top: 50%;left: 53%;z-index:2;display:none; margin: -50px 0px 0px -50px;">Loading&#8230;</div>
+           <!--loader-->
+           @RenderBody()
+       </div>
+
+       
+       
+        <!-- change pwd -->
+        <div class="modal fade" id="loginmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <center><h5 class="modal-title" id="exampleModalLabel">Change Password<span id="edittitle"></span></h5></center>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="box box-success ">
+                            
+                                <div class="box-header with-border">
+                                    <h3 class="box-title" id="title"></h3>
+                                </div>
+                                <div class="box-body" id="newmodalbody">
+                                  
+                                </div>
+                                <!-- /.box-body -->
+                           
+                        </div>
+                        <div class="clearfix"></div>
+                        <!-- </div> -->
+                        <!--  <div class="modal-footer">
+
+                    </div> -->
+                        <!--  </div>
+                    </div> -->
+                    </div>
+                </div>
+            </div>
+
+            </div>
+            <!-- login modal end-->
+
+            <footer>
+                <div class="container margin_60_35">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-12">
+                            <p>
+                                <a href="index-2.html" title="Findoctor">
+                                    <img src="@Url.Content("/Contents/img/logo.png")" data-retina="true" alt="" width="163" height="36" class="img-fluid">
+                                </a>
+                            </p>
+                        </div>
+                        <div class="col-lg-3 col-md-4">
+                            <h5>About</h5>
+                            <ul class="links">
+                                <li><a href="#0">About us</a></li>
+                                <li><a href="blog.html">Blog</a></li>
+                                <li><a href="#0">FAQ</a></li>
+                                <li><a href="login.html">Login</a></li>
+                                <li><a href="register.html">Register</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-3 col-md-4">
+                            <h5>Useful links</h5>
+                            <ul class="links">
+                                <li><a href="#0">Doctors</a></li>
+                                <li><a href="#0">Clinics</a></li>
+                                <li><a href="#0">Specialization</a></li>
+                                <li><a href="#0">Join as a Doctor</a></li>
+                                <li><a href="#0">Download App</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-3 col-md-4">
+                            <h5>Contact with Us</h5>
+                            <ul class="contacts">
+                                <li><a href="tel://61280932400"><i class="icon_mobile"></i> +977 071-540987</a></li>
+                                <li><a href="mailto:info@gmail.com"><i class="icon_mail_alt"></i> <span class="__cf_email__" data-cfemail="d0b8b5bca090b6b9beb4bfb3a4bfa2feb3bfbd">info@shpud.com</span></a></li>
+                            </ul>
+                            <div class="follow_us">
+                                <h5>Follow us</h5>
+                                <ul>
+                                    <li><a href="#0"><i class="social_facebook"></i></a></li>
+                                    <li><a href="#0"><i class="social_twitter"></i></a></li>
+                                    <li><a href="#0"><i class="social_linkedin"></i></a></li>
+                                    <li><a href="#0"><i class="social_instagram"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/row-->
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <ul id="additional_links">
+                                <li><a href="#0">Terms and conditions</a></li>
+                                <li><a href="#0">Privacy</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <div id="copy">© 2018 SHPUD</div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <!--/footer-->
+        </div>
+    <!-- page -->
+
+    <div id="toTop"></div>
+    <!-- Back to top button -->
+    <!-- COMMON SCRIPTS -->
+    <script>
+        $('#password').click(function () {
+            $.ajax({
+                type: 'GET',
+                url: window.location.origin + "/User/changepassword",
+                data: '',
+                success: function (data) {
+                    // $("#viewlist")[0].innerHtml = data;
+                    //or
+                    $("#loginmodal").modal('show');
+                    $("#newmodalbody").html(data);
+                    //$('#default').hide();
+                }
+            });
+            return false; //prevent default action(submit) for a button
+            
+        });
+       
+    </script>
+    <script src="@Url.Content("/Contents/jQueryVal/jquery.validate-vsdoc.js")"></script>
+    <script src="@Url.Content("//Contents/jQueryVal/jquery.validate.js")"></script>
+    <script src="@Url.Content("/Contents/jQueryVal/jquery.validate.min.js")"></script>
+    <script src="@Url.Content("/Contents/jQueryVal/jquery.validate.unobtrusive.js")"></script>
+    <script src="@Url.Content("/Contents/jQueryVal/jquery.validate.unobtrusive.min.js")"></script>
+    <script src="@Url.Content("/Contents/pnotify/pnotify.custom.min.js")"></script>
+    <link href="@Url.Content("/Contents/pnotify/pnotify.animate.css")" rel="stylesheet" />
+    <script src="~/Contents/js/owl.carousel.min.js"></script>
+    <script src="@Url.Content("/Contents/pnotify/pnotify.animate.js")"></script>
+    <script src="@Url.Content("/Contents/js/common_scripts.min.js")"></script>
+    <script src="@Url.Content("/Contents/js/functions.js")"></script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,153 @@
+﻿@model SHPUD.Models.ho
+
+
+@using (Html.BeginForm("EditHospital", "Hospital", FormMethod.Post, new { @id = "userform" }))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>TBL_HOSPITAL</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.HOSPITAL_ID)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.HOSPITAL_NAME, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.HOSPITAL_NAME, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.HOSPITAL_NAME, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.HOSPITAL_ADDRESS, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.HOSPITAL_ADDRESS, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.HOSPITAL_ADDRESS, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CONTACT, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CONTACT, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CONTACT, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EMAIL, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EMAIL, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EMAIL, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SPECIALIZATION, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SPECIALIZATION, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SPECIALIZATION, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.HOSPITAL_IMAGE, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" class="form-control" name="filename" />
+                @Html.HiddenFor(model => model.HOSPITAL_IMAGE, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.HOSPITAL_IMAGE, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+<script>
+    $('#userform').unbind('sumbit').on('submit', function(e) {
+        e.preventDefault();
+        var formData = new FormData(this);
+        $this = $(this);
+        $.validator.unobtrusive.parse($this);
+        var isValid = $(this).valid();
+        if (!isValid) {
+            $(this).find(':submit').removeAttr('disabled');
+            return false;
+        }
+        else {
+            $(this).find(':submit').attr('disabled', 'disabled');
+        }
+        $.ajax({
+            url: $(this).attr("action"),
+            method:"post",
+            data: formData,
+            beforeSend: function () {
+                // setting a timeout
+                $("#processing").show();
+            },
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                $(this).find(':submit').removeAttr('disabled');
+                $('#submit').prop("disabled", false);
+
+                if (data.successMessage) {
+                    swal({
+                        position: 'top-end',
+                        type: 'success',
+                        title: data.successMessage,
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                    $('#userform')[0].reset();
+                    manageHospital();
+                }
+                if (data.errorMessage) {
+                    swal(
+                      data.title,
+                      data.errorMessage,
+                      'error'
+                    );
+
+                }
+
+
+
+
+            },
+            error: function (data) {
+                $(this).find(':submit').removeAttr('disabled');
+                $('#submit').prop("disabled", false);
+                if (data.errorMessage) {
+                    swal(
+                      data.title,
+                      data.errorMessage,
+                      'error'
+                    )
+                }
+                else
+                {
+                    $('#submit').prop("disabled", false);
+                    alert('An error occurred.');
+
+                }
+
+
+            },
+            complete: function () {
+                $('#submit').prop("disabled", false);
+                // hide image here
+                $("#processing").hide();
+            }
+        });
+
+    });
+</script>

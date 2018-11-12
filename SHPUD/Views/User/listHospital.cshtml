@@ -1,0 +1,132 @@
+﻿@using PagedList.Mvc;
+@model  PagedList.IPagedList<SHPUD.Models.TBL_HOSPITAL>
+
+@{
+    ViewBag.Title = "listHospital";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+<main>
+    <div id="results">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h4><strong>Showing @Model.Count</strong> of @Model.TotalItemCount results</h4>
+                </div>
+                
+                    <div class="col-md-6">
+                        <div class="search_bar_list">
+                            <form method="get" action="~/User/listHospital/">
+                                <input type="text" class="form-control" placeholder="Ex. Name, Address, Specilization..." name="query">
+                                <input type="submit" value="Search">
+                            </form>
+</div>
+                    </div>
+                
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /results -->
+
+    
+    <!-- /filters -->
+
+    <div class="container margin_60_35">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="row">
+@foreach (var item in Model)
+{
+                    <div class="col-md-6">
+                        <div class="box_list wow fadeIn">
+                            <a href="#0" class="wish_bt"></a>
+                            <figure>
+                                <a href="@Url.Action("DetailHospital/","User", new { id = item.HOSPITAL_ID })">
+                                    <img src="@Url.Content("/Contents/upload/Hospital/"+item.HOSPITAL_IMAGE)" style="height: 100%;width: 100%;" class="img-fluid" alt="">
+                                    <div class="preview"><span>Read more</span></div>
+                                </a>
+                            </figure>
+                            <div class="wrapper">
+                                <small>@Html.DisplayFor(modelItem => item.SPECIALIZATION)</small>
+                                <h3>@Html.DisplayFor(modelItem => item.HOSPITAL_NAME)</h3>
+
+                                <p>@Html.DisplayFor(modelItem => item.CONTACT),  @Html.DisplayFor(modelItem => item.EMAIL)</p>
+                                <span class="rating" hidden="hidden"></span>
+                                <a href="badges.html" hidden="hidden" data-toggle="tooltip" data-placement="top" data-original-title="Badge Level" class="badge_list_1"><img src="img/badges/badge_1.svg" width="15" height="15" alt=""></a>
+                            </div>
+                            <ul>
+                                @*<li hidden="hidden"><a href="#0" onclick="onHtmlClick('Doctors', 0)"><i class="icon_pin_alt"></i>View on map</a></li>
+                                <li><a href="#" target="_blank"><i class="icon_pin_alt"></i>Directions</a></li>*@
+                                <li><a href="@Url.Action("DetailHospital/","User", new { id = item.HOSPITAL_ID })">Details</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /box_list -->
+}
+
+
+                </div>
+                <!-- /row -->
+
+                <nav aria-label="" class="add_top_20">
+                    @Html.PagedListPager(Model, page => Url.Action("listHospital", new { page, query = Request.QueryString["query"] }), new PagedListRenderOptions() { FunctionToTransformEachPageLink = (liTag, aTag) => { aTag.Attributes.Add("class", "page-link"); liTag.InnerHtml = aTag.ToString(); return liTag; }, Display = PagedListDisplayMode.IfNeeded, ClassToApplyToFirstListItemInPager = "page-item", LiElementClasses = new[] { "page-item" }, UlElementClasses = new[] { "pagination pagination-sm" } })
+                    @*<ul class="pagination pagination-sm">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1">Previous</a>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Next</a>
+                        </li>
+                    </ul>*@
+                </nav>
+                <!-- /pagination -->
+            </div>
+            <!-- /col -->
+
+            <aside class="col-lg-4" id="sidebar">
+                <div id="map_listing" class="normal_list">
+                    <div class="row">
+                        <div class="col-md-12" style="text-align:center">
+                            <b>Recommended For You</b>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="box_list wow fadeIn">
+                                <a href="#0" class="wish_bt"></a>
+                                <figure>
+                                    <a href="detail-page.html">
+                                        <img src="@Url.Content("/Contents/upload/Doctor/")" class="img-fluid" alt="">
+                                        <div class="preview"><span>Read more</span></div>
+                                    </a>
+                                </figure>
+                                <div class="wrapper">
+                                    <small>General</small>
+                                    <h3>Manipal Hospital</h3>
+
+                                    <p> manipal@gmail.com</p>
+                                    <span class="rating"><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i><i class="icon_star"></i> <small>(145)</small></span>
+                                    <a href="badges.html" data-toggle="tooltip" data-placement="top" data-original-title="Badge Level" class="badge_list_1"><img src="img/badges/badge_1.svg" width="15" height="15" alt=""></a>
+                                </div>
+                                <ul>
+                                    <li><a href="#0" onclick="onHtmlClick('Doctors', 0)"><i class="icon_pin_alt"></i>View on map</a></li>
+                                    <li><a href="#" target="_blank"><i class="icon_pin_alt"></i>Directions</a></li>
+                                    <li><a href="#">Details</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </aside>
+            <!-- /aside -->
+
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</main>
+<!-- /main -->

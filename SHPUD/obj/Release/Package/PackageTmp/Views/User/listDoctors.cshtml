@@ -1,0 +1,148 @@
+﻿@using PagedList.Mvc;
+@model  PagedList.IPagedList<SHPUD.Models.TBL_DOCTOR>
+@{
+    ViewBag.Title = "listDoctors";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+<main>
+    <div id="results">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h4><strong>Showing @Model.Count</strong> of @Model.TotalItemCount results</h4>
+                </div>
+                <div class="col-md-6">
+                    <div class="search_bar_list">
+                        <form method="get" action="~/User/listDoctors/">
+                            <input type="text" class="form-control" placeholder="Ex. Specialist, Name, Doctor..." name="query">
+                            <input type="submit" value="Search">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /results -->
+
+  
+    <!-- /filters -->
+
+    <div class="container margin_60_35">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="row">
+        @foreach(var item in Model)
+        {
+            if (item == null)
+            {
+                <h2>No Result Found</h2>
+            }
+
+        }
+        
+@for (int i=0; i<Model.Count;i++)
+{
+                    <div class="col-md-6">
+                        <div class="box_list wow fadeIn active">
+                            <a href="#0" class="wish_bt "></a>
+                            <figure>
+                                <a href="@Url.Action("doctorDetails/","User", new { id = Model[i].DOCTOR_ID })">
+                                    <img src="@Url.Content("/Contents/upload/Doctor/"+Model[i].DOCTOR_IMAGE)" class="img-fluid" alt="" style="height: 100%;width: 100%;">
+                                    <div class="preview"><span>Read more</span></div>
+                                </a>
+                            </figure>
+                            <div class="wrapper">
+                                <small>@Model[i].SPECIALIZATION</small>
+                                <h3> @Model[i].DOCTOR_NAME</h3>
+
+                                <p> @Model[i].EMAIL</p>
+                                
+
+
+
+</div>
+
+
+<ul style="padding-bottom:35px">
+
+
+<li><a href="@Url.Action("doctorDetails/","User", new { id = Model[i].DOCTOR_ID })">Details</a></li>
+
+
+</ul>
+
+
+</div>
+
+
+</div>
+
+
+<!-- /box_list -->
+}
+ 
+
+                </div>
+                <!-- /row -->
+
+                <nav aria-label="" class="add_top_20">
+                    @Html.PagedListPager(Model, page=>Url.Action("listDoctors",new { page , location=Request.QueryString["location"], type = Request.QueryString["type"] } ),new PagedListRenderOptions() {FunctionToTransformEachPageLink= (liTag, aTag) => { aTag.Attributes.Add("class", "page-link"); liTag.InnerHtml = aTag.ToString(); return liTag; } , Display =PagedListDisplayMode.IfNeeded,ClassToApplyToFirstListItemInPager="page-item",LiElementClasses=new[] { "page-item" },UlElementClasses=new[] { "pagination pagination-sm" } })
+                    @*<ul class="pagination pagination-sm">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1">previous</a>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">next</a>
+                        </li>
+                    </ul>*@
+                </nav>
+                <!-- /pagination -->
+            </div>
+            <!-- /col -->
+
+            <aside class="col-lg-4" id="sidebar">
+                <div id="map_listing" class="normal_list">
+                    <div class="row">
+                        <div class="col-md-12" style="text-align:center" >
+                            <b>Recommended For You</b>
+                        </div>
+                        
+                        <div class="col-md-12">
+                            <div class="box_list wow fadeIn">
+                                <a href="#0" class="wish_bt"></a>
+                                <figure>
+                                    <a href="detail-page.html">
+                                        <img src="@Url.Content("/Contents/upload/Doctor/")" class="img-fluid" alt="">
+                                        <div class="preview"><span>Read more</span></div>
+                                    </a>
+                                </figure>
+                                <div class="wrapper">
+                                    <small>Physician</small>
+                                    <h3>Dr. Shankar Bhandari</h3>
+
+                                    <p> shankar@gmail.com</p>
+                                    
+                                </div>
+                                <ul>
+                                    
+                                    <li><a href="#">Details</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </aside>
+            <!-- /aside -->
+
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</main>
+<!-- /main -->

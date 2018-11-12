@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SHPUDModelStoreContainer" CdmEntityContainer="SHPUDEntities1">
+    <EntitySetMapping Name="TBL_ADMIN">
+      <EntityTypeMapping TypeName="SHPUDModel.TBL_ADMIN">
+        <MappingFragment StoreEntitySet="TBL_ADMIN">
+          <ScalarProperty Name="ADMIN_ID" ColumnName="ADMIN_ID" />
+          <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+          <ScalarProperty Name="ADMIN_NAME" ColumnName="ADMIN_NAME" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="ADMIN_IMAGE" ColumnName="ADMIN_IMAGE" />
+          <ScalarProperty Name="WORK_HOSPITAL" ColumnName="WORK_HOSPITAL" />
+          <ScalarProperty Name="GENDER" ColumnName="GENDER" />
+          <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+          <ScalarProperty Name="CONTACT" ColumnName="CONTACT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_DISEASE">
+      <EntityTypeMapping TypeName="SHPUDModel.TBL_DISEASE">
+        <MappingFragment StoreEntitySet="TBL_DISEASE">
+          <ScalarProperty Name="DISEASE_ID" ColumnName="DISEASE_ID" />
+          <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+          <ScalarProperty Name="DISEASE_NAME" ColumnName="DISEASE_NAME" />
+          <ScalarProperty Name="SYMPTOMS" ColumnName="SYMPTOMS" />
+          <ScalarProperty Name="CATEGORY" ColumnName="CATEGORY" />
+          <ScalarProperty Name="TREATMENT" ColumnName="TREATMENT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_DISEASE_DETAILS">
+      <EntityTypeMapping TypeName="SHPUDModel.TBL_DISEASE_DETAILS">
+        <MappingFragment StoreEntitySet="TBL_DISEASE_DETAILS">
+          <ScalarProperty Name="DISEASE_ID" ColumnName="DISEASE_ID" />
+          <ScalarProperty Name="DISEASE_DESCRIPTION" ColumnName="DISEASE_DESCRIPTION" />
+          <ScalarProperty Name="TREATMENT" ColumnName="TREATMENT" />
+          <ScalarProperty Name="SUGGESTION" ColumnName="SUGGESTION" />
+          <ScalarProperty Name="IMAGE" ColumnName="IMAGE" />
+          <ScalarProperty Name="DETAIL_ID" ColumnName="DETAIL_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_DOCTOR">
+      <EntityTypeMapping TypeName="SHPUDModel.TBL_DOCTOR">
+        <MappingFragment StoreEntitySet="TBL_DOCTOR">
+          <ScalarProperty Name="Views" ColumnName="Views" />
+          <ScalarProperty Name="DOCTOR_ID" ColumnName="DOCTOR_ID" />
+          <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+          <ScalarProperty Name="DOCTOR_NAME" ColumnName="DOCTOR_NAME" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="SPECIALIZATION" ColumnName="SPECIALIZATION" />
+          <ScalarProperty Name="DOCTOR_IMAGE" ColumnName="DOCTOR_IMAGE" />
+          <ScalarProperty Name="DOCUMENT" ColumnName="DOCUMENT" />
+          <ScalarProperty Name="WORK_HOSPITAL" ColumnName="WORK_HOSPITAL" />
+          <ScalarProperty Name="GENDER" ColumnName="GENDER" />
+          <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+          <ScalarProperty Name="CONTACT" ColumnName="CONTACT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_HOSPITAL">
+      <EntityTypeMapping TypeName="SHPUDModel.TBL_HOSPITAL">
+        <MappingFragment StoreEntitySet="TBL_HOSPITAL">
+          <ScalarProperty Name="HOSPITAL_ID" ColumnName="HOSPITAL_ID" />
+          <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+          <ScalarProperty Name="HOSPITAL_NAME" ColumnName="HOSPITAL_NAME" />
+          <ScalarProperty Name="HOSPITAL_ADDRESS" ColumnName="HOSPITAL_ADDRESS" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="SPECIALIZATION" ColumnName="SPECIALIZATION" />
+          <ScalarProperty Name="HOSPITAL_IMAGE" ColumnName="HOSPITAL_IMAGE" />
+          <ScalarProperty Name="CONTACT" ColumnName="CONTACT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_USER">
+      <EntityTypeMapping TypeName="SHPUDModel.TBL_USER">
+        <MappingFragment StoreEntitySet="TBL_USER">
+          <ScalarProperty Name="TOKEN" ColumnName="TOKEN" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+          <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="GENDER" ColumnName="GENDER" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="CONTACT" ColumnName="CONTACT" />
+          <ScalarProperty Name="IMAGE" ColumnName="IMAGE" />
+          <ScalarProperty Name="ROLE" ColumnName="ROLE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_USER_HEALTH_RECORD">
+      <EntityTypeMapping TypeName="SHPUDModel.TBL_USER_HEALTH_RECORD">
+        <MappingFragment StoreEntitySet="TBL_USER_HEALTH_RECORD">
+          <ScalarProperty Name="RECORD_ID" ColumnName="RECORD_ID" />
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+          <ScalarProperty Name="PREVIOUS_DISEASE" ColumnName="PREVIOUS_DISEASE" />
+          <ScalarProperty Name="DOCTOR_ID" ColumnName="DOCTOR_ID" />
+          <ScalarProperty Name="DATE_OF_CHECKUP" ColumnName="DATE_OF_CHECKUP" />
+          <ScalarProperty Name="IMAGE" ColumnName="IMAGE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_DOCTOR_DETAILS">
+      <EntityTypeMapping TypeName="SHPUDModel.TBL_DOCTOR_DETAILS">
+        <MappingFragment StoreEntitySet="TBL_DOCTOR_DETAILS">
+          <ScalarProperty Name="DETAIL_ID" ColumnName="DETAIL_ID" />
+          <ScalarProperty Name="DOCTOR_ID" ColumnName="DOCTOR_ID" />
+          <ScalarProperty Name="DOCTOR_DESCRIPTION" ColumnName="DOCTOR_DESCRIPTION" />
+          <ScalarProperty Name="DOCTOR_EDUCATION" ColumnName="DOCTOR_EDUCATION" />
+          <ScalarProperty Name="DOCTOR_SPECIALIZATION_DETAILS" ColumnName="DOCTOR_SPECIALIZATION_DETAILS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="P_SET_USER" FunctionName="SHPUDModel.Store.P_SET_USER" />
+    <EntitySetMapping Name="TBL_HOSPITAL_DETAILS">
+      <EntityTypeMapping TypeName="SHPUDModel.TBL_HOSPITAL_DETAILS">
+        <MappingFragment StoreEntitySet="TBL_HOSPITAL_DETAILS">
+          <ScalarProperty Name="DETAIL_ID" ColumnName="DETAIL_ID" />
+          <ScalarProperty Name="REMARKS" ColumnName="REMARKS" />
+          <ScalarProperty Name="MORE_INFO" ColumnName="MORE_INFO" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="HOSPITAL_ID" ColumnName="HOSPITAL_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CONTACT_EMAILS">
+      <EntityTypeMapping TypeName="SHPUDModel.CONTACT_EMAILS">
+        <MappingFragment StoreEntitySet="CONTACT_EMAILS">
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_BOOKMARK">
+      <EntityTypeMapping TypeName="SHPUDModel.TBL_BOOKMARK">
+        <MappingFragment StoreEntitySet="TBL_BOOKMARK">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="Disease_ID" ColumnName="Disease_ID" />
+          <ScalarProperty Name="Hospital_ID" ColumnName="Hospital_ID" />
+          <ScalarProperty Name="Doctor_ID" ColumnName="Doctor_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_BOOKING">
+      <EntityTypeMapping TypeName="SHPUDModel.TBL_BOOKING">
+        <MappingFragment StoreEntitySet="TBL_BOOKING">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Doctor_ID" ColumnName="Doctor_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

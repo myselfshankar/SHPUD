@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Error";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<main>
+    <div id="error_page">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-xl-7 col-lg-9">
+                    <h2><i class="icon_error-triangle_alt"></i>Opps</h2>
+                    <p>We're sorry, but something went wrong.</p>
+                    <p>If you are getting problem, please provide us<a href="@Url.Action("Contact/","User")"> feedback</a></p>
+                    
+                </div>
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /error_page -->
+</main>
+
+
+

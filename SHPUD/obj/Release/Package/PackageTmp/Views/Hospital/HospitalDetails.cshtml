@@ -1,0 +1,54 @@
+﻿@model SHPUD.Models.HospitalViewModel
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        <h4 class="modal-title" id="myModalLabel">More About <strong> @Html.DisplayFor(model => model.HOSPITAL_NAME)</strong></h4>
+    </div>
+    <div class="modal-body">
+        <center>
+            @{ 
+                var image="";
+                if (Model.HOSPITAL_IMAGE == "")
+                {
+                    //var date = Model.DateAdded.ToString();
+                     image = Url.Content("/Contents/upload/Hospital/default.jpg");
+                }
+                else
+                {
+                     image = Url.Content("/Contents/upload/Hospital/") + Model.HOSPITAL_IMAGE;
+                }
+            }
+
+            <img src="@image" name="aboutme" title="" width="140" height="140" border="0" class="img-circle"></a>
+            <h3 class="media-heading">@Html.DisplayFor(model => model.HOSPITAL_NAME)</h3>
+            @*<label class="badge bg-green" style="font-size:16px;"><strong>@age years old </strong></label>
+            <label class="badge bg-blue" style="font-size:16px;"><strong>@Html.DisplayFor(model => model.GENDER) </strong></label>
+            <label class="badge bg-yellow" style="font-size:16px;"><strong>Date of Birth : @date.ToString()</strong></label>*@
+
+        </center>
+        <hr>
+        <center>
+            <p class="text-left">
+                <h4 style="text-align:left">Details: </h4>
+                <div class="row" style="text-align:left">
+                    <div class="col-md-12">
+                        <p><strong>Address :</strong></p><p>@Model.HOSPITAL_ADDRESS</p>
+                        <p><strong>E-mail : </strong></p><p>@Model.EMAIL</p>
+                        <p><strong>Contact :</strong></p><p>@Model.CONTACT</p>
+                        <p><strong>Description :</strong></p><p>@Model.DESCRIPTION</p>
+                        <p><strong>More :</strong></p><p>@Model.MORE_INFO</p>
+                    </div>
+                </div>
+            </p>
+                <br>
+        </center>
+    </div>
+<div class="modal-footer">
+    <center>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    </center>
+</div>
+</div>
+<div>
+
+   

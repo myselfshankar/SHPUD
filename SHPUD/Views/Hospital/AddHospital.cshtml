@@ -1,0 +1,188 @@
+﻿@model SHPUD.Models.HospitalViewModel
+
+
+@using (Html.BeginForm("AddHospital", "Hospital", FormMethod.Post, new { @id = "userform", @enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">Add Hospital</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.HOSPITAL_NAME, htmlAttributes: new { @class = "control-label" })
+                            
+                                @Html.EditorFor(model => model.HOSPITAL_NAME, new { htmlAttributes = new { @class = "form-control", @placeholder = "Hospital Name" } })
+                                @Html.ValidationMessageFor(model => model.HOSPITAL_NAME, "", new { @class = "text-danger" })
+                           
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.HOSPITAL_ADDRESS, htmlAttributes: new { @class = "control-label" })
+                            
+                                @Html.EditorFor(model => model.HOSPITAL_ADDRESS, new { htmlAttributes = new { @class = "form-control", @placeholder = "Butwal-13,Rupandehi" } })
+                                @Html.ValidationMessageFor(model => model.HOSPITAL_ADDRESS, "", new { @class = "text-danger" })
+                            
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.CONTACT, htmlAttributes: new { @class = "control-label" })
+                            
+                                @Html.EditorFor(model => model.CONTACT, new { htmlAttributes = new { @class = "form-control", @placeholder = "071-xxxxxxx" } })
+                                @Html.ValidationMessageFor(model => model.CONTACT, "", new { @class = "text-danger" })
+                            
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DESCRIPTION, htmlAttributes: new { @class = "control-label" })
+
+                            @Html.TextAreaFor(model => model.DESCRIPTION, new { @cols = "100", @rows = "8", @style = "width:100%;", htmlAttributes = new { @class = "form-control", @placeholder = "071-xxxxxxx" } })
+                            @Html.ValidationMessageFor(model => model.DESCRIPTION, "", new { @class = "text-danger" })
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.MORE_INFO, htmlAttributes: new { @class = "control-label" })
+
+                            @Html.TextAreaFor(model => model.MORE_INFO, new { @cols = "100", @rows = "4", @style = "width:100%;", htmlAttributes = new { @class = "form-control", @placeholder = "071-xxxxxxx" } })
+                            @Html.ValidationMessageFor(model => model.MORE_INFO, "", new { @class = "text-danger" })
+
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.EMAIL, htmlAttributes: new { @class = "control-label" })
+                            
+                                @Html.EditorFor(model => model.EMAIL, new { htmlAttributes = new { @class = "form-control", @placeholder = "someone@example.com" } })
+                                @Html.ValidationMessageFor(model => model.EMAIL, "", new { @class = "text-danger" })
+                            
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.SPECIALIZATION, htmlAttributes: new { @class = "control-label" })
+                           
+                                @Html.EditorFor(model => model.SPECIALIZATION, new { htmlAttributes = new { @class = "form-control", @placeholder = "Heart Hospital" } })
+                                @Html.ValidationMessageFor(model => model.SPECIALIZATION, "", new { @class = "text-danger" })
+                           
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.HOSPITAL_IMAGE, htmlAttributes: new { @class = "control-label" })
+                            
+                              <input type="file" name="filename" />
+                                @Html.ValidationMessageFor(model => model.HOSPITAL_IMAGE, "", new { @class = "text-danger" })
+                            
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.REMARKS, htmlAttributes: new { @class = "control-label" })
+
+                            @Html.EditorFor(model => model.REMARKS, new { htmlAttributes = new { @class = "form-control", @placeholder = "071-xxxxxxx" } })
+                            @Html.ValidationMessageFor(model => model.REMARKS, "", new { @class = "text-danger" })
+
+                        </div>
+                    </div>
+                </div>
+                
+                 
+            </div>
+            <!-- /.box-body -->
+
+        <div class="box-footer">
+            <center>
+                <button type="submit" class="btn btn-primary btn-lg" text-align="center">Create</button>
+            </center>
+
+        </div>
+        
+    </div>
+          <!-- /.box -->
+
+   
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+<script>
+    $('#userform').unbind('sumbit').on('submit', function(e) {
+        e.preventDefault();
+        var formData = new FormData(this);
+        $this = $(this);
+        $.validator.unobtrusive.parse($this);
+        var isValid = $(this).valid();
+        if (!isValid) {
+            $(this).find(':submit').removeAttr('disabled');
+            return false;
+        }
+        else {
+            $(this).find(':submit').attr('disabled', 'disabled');
+        }
+        $.ajax({
+            url: $(this).attr("action"),
+            method:"post",
+            data: formData,
+            beforeSend: function () {
+                // setting a timeout
+                $("#loading").show();
+            },
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                $(this).find(':submit').removeAttr('disabled');
+                $('#submit').prop("disabled", false);
+
+                if (data.successMessage) {
+                    swal({
+                        position: 'top-end',
+                        type: 'success',
+                        title: 'Successfully added Hospital',
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                    $('#userform')[0].reset();
+                    manageHospital();
+                }
+
+
+
+            },
+            error: function (data) {
+                $(this).find(':submit').removeAttr('disabled');
+                $('#submit').prop("disabled", false);
+                if (data.errorMessage) {
+                    alert(data.errorMessage)
+                    swal(
+                       data.title,
+                       data.errorMessage,
+                       'error'
+                     )
+                }
+                else
+                {
+                    $('#submit').prop("disabled", false);
+                    swal(
+                       'Error',
+                       'Something Went Wrong',
+                       'error'
+                     )
+
+                }
+
+
+            },
+            complete: function () {
+                $('#submit').prop("disabled", false);
+                // hide image here
+                $("#loading").hide();
+            }
+        });
+
+    });
+</script>

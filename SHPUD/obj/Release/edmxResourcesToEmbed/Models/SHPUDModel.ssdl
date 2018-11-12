@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SHPUDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CONTACT_EMAILS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="Phone" Type="varchar" MaxLength="50" />
+    <Property Name="Message" Type="text" />
+    <Property Name="Status" Type="varchar" MaxLength="50" />
+    <Property Name="Remarks" Type="varchar" MaxLength="50" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TBL_ADMIN">
+    <Key>
+      <PropertyRef Name="ADMIN_ID" />
+    </Key>
+    <Property Name="ADMIN_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DateAdded" Type="datetime" />
+    <Property Name="ADMIN_NAME" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="ADDRESS" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="EMAIL" Type="varchar" MaxLength="200" />
+    <Property Name="ADMIN_IMAGE" Type="varchar" MaxLength="100" />
+    <Property Name="WORK_HOSPITAL" Type="varchar" MaxLength="100" />
+    <Property Name="GENDER" Type="varchar" MaxLength="10" />
+    <Property Name="PASSWORD" Type="varchar" MaxLength="200" />
+    <Property Name="CONTACT" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TBL_BOOKING">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="Doctor_ID" Type="int" />
+    <Property Name="Date" Type="varchar" MaxLength="50" />
+    <Property Name="Time" Type="varchar" MaxLength="50" />
+    <Property Name="Message" Type="text" />
+    <Property Name="User_ID" Type="int" />
+    <Property Name="Remarks" Type="varchar" MaxLength="200" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TBL_BOOKMARK">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="Doctor_ID" Type="int" />
+    <Property Name="Hospital_ID" Type="int" />
+    <Property Name="Disease_ID" Type="int" />
+    <Property Name="Remarks" Type="varchar" MaxLength="50" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TBL_DISEASE">
+    <Key>
+      <PropertyRef Name="DISEASE_ID" />
+    </Key>
+    <Property Name="DISEASE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DateAdded" Type="datetime" />
+    <Property Name="DISEASE_NAME" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="SYMPTOMS" Type="varchar" MaxLength="200" />
+    <Property Name="CATEGORY" Type="varchar" MaxLength="200" />
+    <Property Name="TREATMENT" Type="int" />
+  </EntityType>
+  <EntityType Name="TBL_DISEASE_DETAILS">
+    <Key>
+      <PropertyRef Name="DETAIL_ID" />
+    </Key>
+    <Property Name="DISEASE_ID" Type="int" Nullable="false" />
+    <Property Name="DISEASE_DESCRIPTION" Type="text" />
+    <Property Name="TREATMENT" Type="text" />
+    <Property Name="SUGGESTION" Type="text" />
+    <Property Name="IMAGE" Type="varchar" MaxLength="50" />
+    <Property Name="DETAIL_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TBL_DOCTOR">
+    <Key>
+      <PropertyRef Name="DOCTOR_ID" />
+    </Key>
+    <Property Name="DOCTOR_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DateAdded" Type="datetime" />
+    <Property Name="DOCTOR_NAME" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="ADDRESS" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="EMAIL" Type="varchar" MaxLength="200" />
+    <Property Name="SPECIALIZATION" Type="varchar" MaxLength="200" />
+    <Property Name="DOCTOR_IMAGE" Type="varchar" MaxLength="100" />
+    <Property Name="DOCUMENT" Type="varchar" MaxLength="100" />
+    <Property Name="WORK_HOSPITAL" Type="varchar" MaxLength="100" />
+    <Property Name="GENDER" Type="varchar" MaxLength="10" />
+    <Property Name="PASSWORD" Type="varchar" MaxLength="200" />
+    <Property Name="CONTACT" Type="varchar" MaxLength="50" />
+    <Property Name="Views" Type="int" />
+  </EntityType>
+  <EntityType Name="TBL_DOCTOR_DETAILS">
+    <Key>
+      <PropertyRef Name="DETAIL_ID" />
+    </Key>
+    <Property Name="DOCTOR_ID" Type="int" Nullable="false" />
+    <Property Name="DOCTOR_DESCRIPTION" Type="text" />
+    <Property Name="DOCTOR_EDUCATION" Type="text" />
+    <Property Name="DOCTOR_SPECIALIZATION_DETAILS" Type="text" />
+    <Property Name="DETAIL_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TBL_HOSPITAL">
+    <Key>
+      <PropertyRef Name="HOSPITAL_ID" />
+    </Key>
+    <Property Name="HOSPITAL_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DateAdded" Type="datetime" />
+    <Property Name="HOSPITAL_NAME" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="HOSPITAL_ADDRESS" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="EMAIL" Type="varchar" MaxLength="200" />
+    <Property Name="SPECIALIZATION" Type="varchar" MaxLength="200" />
+    <Property Name="HOSPITAL_IMAGE" Type="varchar" MaxLength="100" />
+    <Property Name="CONTACT" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TBL_HOSPITAL_DETAILS">
+    <Key>
+      <PropertyRef Name="DETAIL_ID" />
+    </Key>
+    <Property Name="HOSPITAL_ID" Type="int" Nullable="false" />
+    <Property Name="DESCRIPTION" Type="text" />
+    <Property Name="MORE_INFO" Type="text" />
+    <Property Name="REMARKS" Type="text" />
+    <Property Name="DETAIL_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TBL_USER">
+    <Key>
+      <PropertyRef Name="USER_ID" />
+    </Key>
+    <Property Name="USER_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DateAdded" Type="datetime" />
+    <Property Name="NAME" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="ADDRESS" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="PASSWORD" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="EMAIL" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="GENDER" Type="varchar" MaxLength="2" Nullable="false" />
+    <Property Name="DOB" Type="date" Nullable="false" />
+    <Property Name="CONTACT" Type="varchar" MaxLength="20" />
+    <Property Name="IMAGE" Type="varchar" MaxLength="200" />
+    <Property Name="ROLE" Type="varchar" MaxLength="20" />
+    <Property Name="STATUS" Type="varchar" MaxLength="50" />
+    <Property Name="TOKEN" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="TBL_USER_HEALTH_RECORD">
+    <Key>
+      <PropertyRef Name="RECORD_ID" />
+    </Key>
+    <Property Name="RECORD_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="USER_ID" Type="int" Nullable="false" />
+    <Property Name="DateAdded" Type="datetime" />
+    <Property Name="PREVIOUS_DISEASE" Type="varchar" MaxLength="200" />
+    <Property Name="DOCTOR_ID" Type="int" />
+    <Property Name="DATE_OF_CHECKUP" Type="varchar" MaxLength="200" />
+    <Property Name="IMAGE" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <Function Name="P_SET_USER" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="P_NAME" Type="nvarchar" Mode="In" />
+    <Parameter Name="P_ADDRESS" Type="nvarchar" Mode="In" />
+    <Parameter Name="P_PASSWORD" Type="nvarchar" Mode="In" />
+    <Parameter Name="P_EMAIL" Type="nvarchar" Mode="In" />
+    <Parameter Name="P_GENDER" Type="nvarchar" Mode="In" />
+    <Parameter Name="P_DOB" Type="date" Mode="In" />
+    <Parameter Name="P_CONTACT" Type="nvarchar" Mode="In" />
+    <Parameter Name="P_IMAGE" Type="nvarchar" Mode="In" />
+    <Parameter Name="V_OUT" Type="int" Mode="InOut" />
+  </Function>
+  <EntityContainer Name="SHPUDModelStoreContainer">
+    <EntitySet Name="CONTACT_EMAILS" EntityType="Self.CONTACT_EMAILS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_ADMIN" EntityType="Self.TBL_ADMIN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_BOOKING" EntityType="Self.TBL_BOOKING" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_BOOKMARK" EntityType="Self.TBL_BOOKMARK" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_DISEASE" EntityType="Self.TBL_DISEASE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_DISEASE_DETAILS" EntityType="Self.TBL_DISEASE_DETAILS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_DOCTOR" EntityType="Self.TBL_DOCTOR" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_DOCTOR_DETAILS" EntityType="Self.TBL_DOCTOR_DETAILS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_HOSPITAL" EntityType="Self.TBL_HOSPITAL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_HOSPITAL_DETAILS" EntityType="Self.TBL_HOSPITAL_DETAILS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_USER" EntityType="Self.TBL_USER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_USER_HEALTH_RECORD" EntityType="Self.TBL_USER_HEALTH_RECORD" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

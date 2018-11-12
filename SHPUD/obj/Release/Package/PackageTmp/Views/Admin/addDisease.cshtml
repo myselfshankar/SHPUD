@@ -1,0 +1,62 @@
+﻿<div class="content row">
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">Add New Disease</h3>
+            <a href="#" class="btn btn-primary btn-sm" style="float: right;"><i class="fa fa-list"></i> List all Disease</a>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <!-- <iframe name="votar" style="display:none;"></iframe> -->
+        <form class="validatedForm" action="#" enctype="multipart/form-data" method="post" accept-charset="utf-8">
+            <div class="box-body">
+                <div class="form-group">
+                    <label for="email">Enter Name:</label>
+                    <input type="text" class="form-control" id="name" name="name" required="required" />
+                </div>
+                <div class="form-group">
+                    <label for="email">Category:</label>
+                    <select class="form-control" name="category[]" id="category" multiple="multiple">
+                        <option value="admin">Skin</option>
+                        <option value="teacher">Heart</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="email">Enter Symptoms:</label>
+                    <input type="text" class="form-control" id="symptoms" name="symptoms" required="required" />
+                </div>
+                <div class="form-group">
+                    <label for="email">Primary Treatment:</label>
+                    <input type="text" class="form-control" id="treatment" name="treatment" required="required" />
+                </div>
+                <div class="form-group">
+                    <label for="email">Suggestions:</label>
+                    <input type="text" class="form-control" id="suggestions" name="suggestions" required="required" />
+                </div>
+                <div class="form-group">
+                    <label for="email">Tags:</label>
+                    <input type="text" class="form-control" data-role="tagsinput" id="tags" name="tags" required="required" />
+                </div>
+                
+
+                <button type="submit" class="btn btn-primary" name="submitBtn" onclick="return validate()"><i class="fa fa-save"></i> Save Disease</button>
+                <a href="<?php echo base_url() ?>user/listUser" class="btn btn-danger" name="discard">Discard </a>
+            </div>
+        </form>
+    </div>
+    <!-- /.box -->
+    <!-- </fieldset> -->
+    <script type="text/javascript">
+       
+
+        CKEDITOR.replace('symptoms');
+        CKEDITOR.replace('treatment');
+        CKEDITOR.replace('suggestions');
+        $(document).ready(function () {
+            $('#category').select2();
+        });
+
+       
+    </script>
+    <script src="<?php echo assets_url(); ?>ckeditor/ckeditor.js"></script>
+
+</div>

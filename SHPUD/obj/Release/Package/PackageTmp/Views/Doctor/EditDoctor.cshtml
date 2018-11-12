@@ -1,0 +1,221 @@
+﻿@model SHPUD.Models.DoctorViewModel
+
+@using (Html.BeginForm("EditDoctor", "Doctor", FormMethod.Post, new { @id = "userform" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.DOCTOR_ID)
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">Add Doctor</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+
+        <div class="box-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DOCTOR_NAME, htmlAttributes: new { @class = "control-label" })
+
+                        @Html.EditorFor(model => model.DOCTOR_NAME, new { htmlAttributes = new { @class = "form-control", @placeholder = "Doctor Name" } })
+                        @Html.ValidationMessageFor(model => model.DOCTOR_NAME, "", new { @class = "text-danger" })
+
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ADDRESS, htmlAttributes: new { @class = "control-label" })
+
+                        @Html.EditorFor(model => model.ADDRESS, new { htmlAttributes = new { @class = "form-control", @placeholder = "Butwal-13, Yogikuti" } })
+                        @Html.ValidationMessageFor(model => model.ADDRESS, "", new { @class = "text-danger" })
+
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.CONTACT, htmlAttributes: new { @class = "control-label" })
+
+                        @Html.EditorFor(model => model.CONTACT, new { htmlAttributes = new { @class = "form-control", @placeholder = "e.g 98xxxxxxxx" } })
+                        @Html.ValidationMessageFor(model => model.CONTACT, "", new { @class = "text-danger" })
+
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.EMAIL, htmlAttributes: new { @class = "control-label" })
+
+                        @Html.EditorFor(model => model.EMAIL, new { htmlAttributes = new { @class = "form-control", @placeholder = "someone@example.com" } })
+                        @Html.ValidationMessageFor(model => model.EMAIL, "", new { @class = "text-danger" })
+
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.SPECIALIZATION, htmlAttributes: new { @class = "control-label" })
+
+                        @Html.EditorFor(model => model.SPECIALIZATION, new { htmlAttributes = new { @class = "form-control", @placeholder = "General Physician" } })
+                        @Html.ValidationMessageFor(model => model.SPECIALIZATION, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DOCTOR_DESCRIPTION, htmlAttributes: new { @class = "control-label" })
+
+                        @Html.TextAreaFor(model => model.DOCTOR_DESCRIPTION, new { @cols = "100", @rows = "6", @style = "width:100%;", htmlAttributes = new { @class = "form-control", @placeholder = "General Physician" } })
+                        @Html.ValidationMessageFor(model => model.DOCTOR_DESCRIPTION, "", new { @class = "text-danger" })
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DOCTOR_EDUCATION, htmlAttributes: new { @class = "control-label" })
+
+                        @Html.TextAreaFor(model => model.DOCTOR_EDUCATION, new { @cols = "100", @rows = "3", @style = "width:100%;", htmlAttributes = new { @class = "form-control", @placeholder = "Butwal Hospital" } })
+                        @Html.ValidationMessageFor(model => model.DOCTOR_EDUCATION, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DOCTOR_SPECIALIZATION_DETAILS, htmlAttributes: new { @class = "control-label" })
+
+                        @Html.TextAreaFor(model => model.DOCTOR_SPECIALIZATION_DETAILS, new { @cols = "100", @rows = "3", @style = "width:100%;", htmlAttributes = new { @class = "form-control", @placeholder = "Butwal Hospital" } })
+                        @Html.ValidationMessageFor(model => model.DOCTOR_SPECIALIZATION_DETAILS, "", new { @class = "text-danger" })
+
+                    </div>
+
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.WORK_HOSPITAL, htmlAttributes: new { @class = "control-label" })
+
+                        @Html.EditorFor(model => model.WORK_HOSPITAL, new { htmlAttributes = new { @class = "form-control", @placeholder = "Butwal Hospital" } })
+                        @Html.ValidationMessageFor(model => model.WORK_HOSPITAL, "", new { @class = "text-danger" })
+
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.GENDER, htmlAttributes: new { @class = "control-label" })
+                        <br />
+                        @Html.RadioButtonFor(model => model.GENDER, "M", new { @checked = true, htmlAttributes = new { @class = "form-control" } }) <label>Male</label>
+                        @Html.RadioButtonFor(model => model.GENDER, "F", new { htmlAttributes = new { @class = "form-control" } }) <label>Female</label>
+
+
+
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DOCTOR_IMAGE, htmlAttributes: new { @class = "control-label" })
+
+                        <input type="file" name="filename" class="form-control" />
+                        @Html.HiddenFor(model => model.DOCTOR_IMAGE, new { htmlAttributes = new { @class = "form-control", @placeholder = "Butwal Hospital" } })
+                        @Html.ValidationMessageFor(model => model.DOCTOR_IMAGE, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DOCUMENT, htmlAttributes: new { @class = "control-label" })
+
+                        @Html.EditorFor(model => model.DOCUMENT, new { htmlAttributes = new { @class = "form-control", @type = "file" } })
+                        @Html.ValidationMessageFor(model => model.DOCUMENT, "", new { @class = "text-danger" })
+
+                    </div>
+
+                    @*<div class="form-group">
+                            @Html.LabelFor(model => model.PASSWORD, htmlAttributes: new { @class = "control-label" })
+
+                                @Html.EditorFor(model => model.PASSWORD, new { htmlAttributes = new { @class = "form-control", @placeholder = "password" } })
+                                @Html.ValidationMessageFor(model => model.PASSWORD, "", new { @class = "text-danger" })
+
+                        </div>*@
+                </div>
+            </div>
+
+
+
+        </div>
+        <!-- /.box-body -->
+
+        <div class="box-footer">
+            <center>
+                <button type="submit" class="btn btn-primary btn-lg" text-align="center">Update</button>
+            </center>
+
+        </div>
+
+    </div>
+}
+
+<script>
+    $('#userform').unbind('sumbit').on('submit', function(e) {
+        e.preventDefault();
+        var formData = new FormData(this);
+        $this = $(this);
+        $.validator.unobtrusive.parse($this);
+        var isValid = $(this).valid();
+        if (!isValid) {
+            $(this).find(':submit').removeAttr('disabled');
+            return false;
+        }
+        else {
+            $(this).find(':submit').attr('disabled', 'disabled');
+        }
+        $.ajax({
+            url: $(this).attr("action"),
+            method:"post",
+            data: formData,
+            beforeSend: function () {
+                // setting a timeout
+                $("#loading").show();
+            },
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                $(this).find(':submit').removeAttr('disabled');
+                $('#submit').prop("disabled", false);
+
+                if (data.successMessage) {
+                    swal({
+                        position: 'top-end',
+                        type: 'success',
+                        title: data.successMessage,
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                    $('#userform')[0].reset();
+                    manageDoctor();
+                }
+                if (data.errorMessage) {
+                    swal(
+                      data.title,
+                      data.errorMessage,
+                      'error'
+                    );
+
+                }
+
+
+
+
+            },
+            error: function (data) {
+                $(this).find(':submit').removeAttr('disabled');
+                $('#submit').prop("disabled", false);
+                if (data.errorMessage) {
+                    swal(
+                      data.title,
+                      data.errorMessage,
+                      'error'
+                    )
+                }
+                else
+                {
+                    $('#submit').prop("disabled", false);
+                    alert('An error occurred.');
+
+                }
+
+
+            },
+            complete: function () {
+                $('#submit').prop("disabled", false);
+                // hide image here
+                $("#loading").hide();
+            }
+        });
+
+    });
+</script>

@@ -1,0 +1,204 @@
+﻿@model SHPUD.Models.EmailViewModel
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+<main>
+    
+
+    <div class="container margin_60_35">
+        <div class="row">
+            <aside class="col-lg-3 col-md-4">
+                <div id="contact_info">
+                    <h3>Contacts info</h3>
+                    <p>
+                        Butwal-12, Rupandehi, Nepal<br> +977- 071- 540234<br>
+                        <a href="#"><span class="__cf_email__">info@shpud.com</span></a>
+                    </p>
+                    
+                    <h4>Get directions</h4>
+                    <form action="http://maps.google.com/maps" method="get" target="_blank">
+                        <div class="form-group">
+                            <input type="text" name="saddr" placeholder="Enter your location" class="form-control styled">
+                            <input type="hidden" name="daddr" value="Tinau Technical College, Purano Sadak, Tilottama 32907">
+                            <!-- Write here your end point -->
+                        </div>
+                        <input type="submit" value="Get directions" class="btn_1 add_bottom_45">
+                    </form>
+                    <ul>
+                        <li>
+                            <strong>Administration</strong>
+                            <a href="tel://003823932342">+977- 071 - 540987</a><br><a href="tel://003823932342"><span class="__cf_email__" data-cfemail="7312171e1a1d33151a1d171c10071c015d101c1e">contact@shpud.com</span></a><br>
+                            <small>Service available 24/7*</small>
+                        </li>
+                        <li>
+                            <strong>General questions</strong>
+                            <a href="tel://003823932342">+977 - 071- 540876</a><br><a href="tel://003823932342"><span class="__cf_email__" data-cfemail="c1b0b4a4b2b5a8aeafb281a7a8afa5aea2b5aeb3efa2aeac">queries@shpud.com</span></a><br>
+                            <p><small>Service available 24/7*</small></p>
+                        </li>
+                    </ul>
+                </div>
+            </aside>
+            <!--/aside -->
+            <div class=" col-lg-8 col-md-8 ml-auto">
+                <div class="box_general">
+                    <h3>Contact Us</h3>
+                    <p>
+                        @Html.Raw(ViewBag.success)
+                       @Html.Raw(ViewBag.error)
+                    </p>
+                    <div>
+                        <div id="message-contact"></div>
+@using (Html.BeginForm("ContactMail", "User", FormMethod.Post, new { @id = "contactform" }))
+{
+    @Html.AntiForgeryToken()
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        @Html.EditorFor(model => model.Firstname, new { htmlAttributes = new { @placeholder = "Firstname", @class = "form-control", @id = "name_contact" } })
+                                        @*<input type="text" class="form-control" id="name_contact" name="name_contact" placeholder="Name">*@
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        @Html.EditorFor(model => model.Lastname, new { htmlAttributes = new { placeholder = "Lastname", @class = "form-control", @id = "lastname_contact" } })
+                                        @*<input type="text" class="form-control" id="lastname_contact" name="lastname_contact" placeholder="Last name">*@
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @placeholder = "Email", @class = "form-control", @id = "lastname_contact" } })
+                                        @*<input type="email" id="email_contact" name="email_contact" class="form-control" placeholder="Email">*@
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        @Html.EditorFor(model => model.phone, new { htmlAttributes = new { @placeholder = "Phone", @class = "form-control", @id = "phone_contact" } })
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        @Html.TextAreaFor(model => model.Message, new { @placeholder = "Message", @cols = "100", @rows = "8", @style = "width:100%;",htmlAttributes = new {  @class = "form-control", @id = "lastname_contact" } })
+                                        @*<textarea rows="5" id="message_contact" name="message_contact" class="form-control" style="height:100px;" placeholder="Hello world!"></textarea>*@
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" id="verify_contact" class="form-control" placeholder="3 + 1 =">
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="submit" value="Submit" class="btn_1 add_top_20" id="submit-contact" onclick="return validate()">
+                        @*</form>*@
+}
+                    </div>
+                    <!-- /col -->
+                </div>
+            </div>
+            <!-- /col -->
+        </div>
+        <!-- End row -->
+    </div>
+    <!-- /container -->
+</main>
+<!-- /main -->
+<script>
+    function validate()
+    {
+        if ($("#verify_contact").val() == 4)
+        {
+           
+            return true;
+        }
+        else {
+            $("#verify_contact").focus();
+            return false;
+        }
+    }
+</script>
+
+@*<script>
+
+    $('#contactform').unbind('sumbit').on('submit', function(e) {
+        e.preventDefault();
+        var formData = new FormData(this);
+        $this = $(this);
+        $.validator.unobtrusive.parse($this);
+        var isValid = $(this).valid();
+        if (!isValid) {
+            $(this).find(':submit').removeAttr('disabled');
+            return false;
+        }
+        else {
+            $(this).find(':submit').attr('disabled', 'disabled');
+        }
+        $.ajax({
+            url: $(this).attr("action"),
+            method:"post",
+            data: formData,
+            beforeSend: function () {
+                // setting a timeout
+                $("#processing").show();
+            },
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                $(this).find(':submit').removeAttr('disabled');
+                $('#submit').prop("disabled", false);
+
+                if (data.successMessage) {
+                    swal({
+                        position: 'top-end',
+                        type: 'success',
+                        title: 'Successfully added Disease',
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                    $('#contactform')[0].reset();
+                    //manageDisease();
+                }
+
+
+
+            },
+            error: function (data) {
+                $(this).find(':submit').removeAttr('disabled');
+                $('#submit').prop("disabled", false);
+                if (data.errorMessage) {
+                    alert(data.errorMessage)
+                    swal(
+                        data.title,
+                        data.errorMessage,
+                        'error'
+                      )
+                }
+                else
+                {
+                    $('#submit').prop("disabled", false);
+                    swal(
+                       'Error',
+                       'Something Went Wrong',
+                       'error'
+                     )
+
+                }
+
+
+            },
+            complete: function () {
+                $('#submit').prop("disabled", false);
+                // hide image here
+                $("#processing").hide();
+            }
+        });
+
+    });
+</script>*@
+

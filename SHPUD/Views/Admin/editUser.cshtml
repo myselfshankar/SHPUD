@@ -1,0 +1,181 @@
+﻿@model SHPUD.Models.TBL_USER
+
+@using (Html.BeginForm("editUser", "Admin", FormMethod.Post, new { @id = "userform",@enctype="multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.USER_ID)
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">Add User</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+
+        <div class="box-body">
+            <div class="row">
+                <div class="col-md-6">
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.NAME, htmlAttributes: new { @class = "control-label" })
+
+                        @Html.EditorFor(model => model.NAME, new { htmlAttributes = new { @class = "form-control", @placeholder = "User Name" } })
+                        @Html.ValidationMessageFor(model => model.NAME, "", new { @class = "text-danger" })
+
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ADDRESS, htmlAttributes: new { @class = "control-label" })
+
+                        @Html.EditorFor(model => model.ADDRESS, new { htmlAttributes = new { @class = "form-control", @placeholder = "Address" } })
+                        @Html.ValidationMessageFor(model => model.ADDRESS, "", new { @class = "text-danger" })
+
+                    </div>
+
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.EMAIL, htmlAttributes: new { @class = "control-label" })
+
+                        @Html.EditorFor(model => model.EMAIL, new { htmlAttributes = new { @class = "form-control", @placeholder = "User Email" } })
+                        @Html.ValidationMessageFor(model => model.EMAIL, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.CONTACT, htmlAttributes: new { @class = "control-label" })
+
+                        @Html.EditorFor(model => model.CONTACT, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter contact" } })
+                        @Html.ValidationMessageFor(model => model.CONTACT, "", new { @class = "text-danger" })
+
+                    </div>
+                    @Html.HiddenFor(model => model.PASSWORD, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter contact" } })
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DOB, htmlAttributes: new { @class = "control-label" })
+
+                        @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
+
+                    </div>
+
+                   
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.GENDER, htmlAttributes: new { @class = "control-label" })
+                        <br />
+                        @Html.RadioButtonFor(model => model.GENDER, "M", new { @checked = true, htmlAttributes = new { @class = "form-control" } }) <label>Male</label>
+                        @Html.RadioButtonFor(model => model.GENDER, "F", new { htmlAttributes = new { @class = "form-control" } }) <label>Female</label>
+
+
+
+                    </div>
+
+                    @Html.HiddenFor(model => model.ROLE, new { @class = "form-control", @Value = "admin" })
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.IMAGE, htmlAttributes: new { @class = "control-label" })
+                        <input type="file" class="form-control" name="filename" />
+                        @Html.ValidationMessageFor(model => model.IMAGE, "", new { @class = "text-danger" })
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- /.box-body -->
+
+        <div class="box-footer">
+            <center>
+                <button type="submit" class="btn btn-primary btn-lg" text-align="center">Update</button>
+            </center>
+
+        </div>
+
+    </div>
+}
+
+
+
+<script>
+    $('#userform').unbind('sumbit').on('submit', function(e) {
+        e.preventDefault();
+        var formData = new FormData(this);
+        $this = $(this);
+        $.validator.unobtrusive.parse($this);
+        var isValid = $(this).valid();
+        if (!isValid) {
+            $(this).find(':submit').removeAttr('disabled');
+            return false;
+        }
+        else {
+            $(this).find(':submit').attr('disabled', 'disabled');
+        }
+        $.ajax({
+            url: $(this).attr("action"),
+            method:"post",
+            data: formData,
+            beforeSend: function () {
+                // setting a timeout
+                $("#loading").show();
+            },
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                $(this).find(':submit').removeAttr('disabled');
+                $('#submit').prop("disabled", false);
+
+                if (data.successMessage) {
+                    swal({
+                        position: 'top-end',
+                        type: 'success',
+                        title: data.successMessage,
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                    $('#userform')[0].reset();
+                    manageUser();
+                }
+                if (data.errorMessage) {
+                    swal(
+                      data.title,
+                      data.errorMessage,
+                      'error'
+                    );
+
+                }
+
+
+
+
+            },
+            error: function (data) {
+                $(this).find(':submit').removeAttr('disabled');
+                $('#submit').prop("disabled", false);
+                if (data.errorMessage) {
+                    swal(
+                      data.title,
+                      data.errorMessage,
+                      'error'
+                    )
+                }
+                else
+                {
+                    $('#submit').prop("disabled", false);
+                    alert('An error occurred.');
+
+                }
+
+
+            },
+            complete: function () {
+                $('#submit').prop("disabled", false);
+                // hide image here
+                $("#loading").hide();
+            }
+        });
+
+    });
+</script>

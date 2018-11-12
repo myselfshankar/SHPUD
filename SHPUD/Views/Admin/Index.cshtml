@@ -1,0 +1,233 @@
+﻿@model SHPUD.Models.CONTACT_EMAILS
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<script>
+    function dashboard() {
+        $.ajax({
+            type: 'POST',
+            url: window.location.origin + "/Admin/Dashboard",
+            data: '',
+            beforeSend: function () {
+                // setting a timeout
+                $("#loading").show();
+            },
+            success: function (data) {
+                // $("#viewlist")[0].innerHtml = data;
+                //or
+                $("#manageDiseaseView").html(data);
+                $('#default').hide();
+            },
+            complete: function () {
+                // setting a timeout
+                $("#loading").hide();
+            }
+        });
+        return false; //prevent default action(submit) for a button
+    }
+    function manageDisease() {
+        $.ajax({
+            type: 'POST',
+            url: window.location.origin + "/Disease/ListDisease",
+            data: '',
+            beforeSend: function () {
+                // setting a timeout
+                $("#loading").show();
+            },
+            success: function (data) {
+                // $("#viewlist")[0].innerHtml = data;
+                //or
+                $("#manageDiseaseView").html(data);
+                $('#default').hide();
+            },
+            complete: function () {
+                // setting a timeout
+                $("#loading").hide();
+            }
+        });
+        return false; //prevent default action(submit) for a button
+
+    }
+    function addDisease() {
+        $.ajax({
+            type: 'GET',
+            url: window.location.origin + "/Disease/AddDisease",
+            data: '',
+            beforeSend: function () {
+                // setting a timeout
+                $("#loading").show();
+            },
+            success: function (data) {
+                // $("#viewlist")[0].innerHtml = data;
+                //or
+                $("#manageDiseaseView").html(data);
+                $('#default').hide();
+            },
+            complete: function () {
+                // setting a timeout
+                $("#loading").hide();
+            }
+        });
+        return false; //prevent default action(submit) for a button
+    }
+
+    function addUser() {
+        $.ajax({
+            type: 'GET',
+            url: window.location.origin + "/Admin/addUser",
+            data: '',
+            beforeSend: function () {
+                // setting a timeout
+                $("#loading").show();
+            },
+            success: function (data) {
+                // $("#viewlist")[0].innerHtml = data;
+                //or
+                $("#manageDiseaseView").html(data);
+                $('#default').hide();
+            },
+            complete: function () {
+                // setting a timeout
+                $("#loading").hide();
+            }
+        });
+        return false; //prevent default action(submit) for a button
+    }
+
+    function manageUser() {
+        $.ajax({
+            type: 'GET',
+            url: window.location.origin + "/Admin/manageUser",
+            data: '',
+            beforeSend: function () {
+                // setting a timeout
+                $("#loading").show();
+            },
+            success: function (data) {
+                // $("#viewlist")[0].innerHtml = data;
+                //or
+                $("#manageDiseaseView").html(data);
+                $('#default').hide();
+            },
+            complete: function () {
+                // setting a timeout
+                $("#loading").hide();
+            }
+        });
+        return false; //prevent default action(submit) for a button
+    }
+
+    function changePassword() {
+        $.ajax({
+            type: 'POST',
+            url: window.location.origin + "/Admin/changePassword",
+            data: '',
+            beforeSend: function () {
+                // setting a timeout
+                $("#loading").show();
+            },
+            success: function (data) {
+                // $("#viewlist")[0].innerHtml = data;
+                //or
+                $("#manageDiseaseView").html(data);
+                $('#default').hide();
+            },
+            complete: function () {
+                // setting a timeout
+                $("#loading").hide();
+            }
+        });
+        return false; //prevent default action(submit) for a button
+    }
+
+    function addDoctor() {
+        $.ajax({
+            type: 'GET',
+            url: window.location.origin + "/Doctor/AddDoctor",
+            data: '',
+            beforeSend: function () {
+                // setting a timeout
+                $("#loading").show();
+            },
+            success: function (data) {
+                // $("#viewlist")[0].innerHtml = data;
+                //or
+                $("#manageDiseaseView").html(data);
+                $('#default').hide();
+            },
+            complete: function () {
+                // setting a timeout
+                $("#loading").hide();
+            }
+        });
+        return false; //prevent default action(submit) for a button
+    }
+
+    function manageDoctor() {
+        $.ajax({
+            type: 'POST',
+            url: window.location.origin + "/Doctor/ListDoctors",
+            data: '',
+            beforeSend: function () {
+                // setting a timeout
+                $("#loading").show();
+            },
+            success: function (data) {
+                // $("#viewlist")[0].innerHtml = data;
+                //or
+                $("#manageDiseaseView").html(data);
+                $('#default').hide();
+            },
+            complete: function () {
+                // setting a timeout
+                $("#loading").hide();
+            }
+        });
+        return false; //prevent default action(submit) for a button
+    }
+    function addHospital() {
+        $.ajax({
+            type: 'GET',
+            url: window.location.origin + "/Hospital/AddHospital",
+            data: '',
+            beforeSend: function () {
+                // setting a timeout
+                $("#loading").show();
+            },
+            success: function (data) {
+                // $("#viewlist")[0].innerHtml = data;
+                //or
+                $("#manageDiseaseView").html(data);
+                $('#default').hide();
+            },
+            complete: function () {
+                // setting a timeout
+                $("#loading").hide();
+            }
+        });
+        return false; //prevent default action(submit) for a button
+    }
+    function manageHospital() {
+        $.ajax({
+            type: 'POST',
+            url: window.location.origin + "/Hospital/ListHospital",
+            data: '',
+            beforeSend: function () {
+                // setting a timeout
+                $("#loading").show();
+            },
+            success: function (data) {
+                // $("#viewlist")[0].innerHtml = data;
+                //or
+                $("#manageDiseaseView").html(data);
+                $('#default').hide();
+            },
+            complete: function () {
+                // setting a timeout
+                $("#loading").hide();
+            }
+        });
+        return false; //prevent default action(submit) for a button
+    }
+</script>

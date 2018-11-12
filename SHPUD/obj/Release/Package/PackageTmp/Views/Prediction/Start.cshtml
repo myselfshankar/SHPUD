@@ -1,0 +1,337 @@
+﻿@{
+    ViewBag.Title = "Start";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<link rel="apple-touch-icon" sizes="76x76" href="@Url.Content("/Contents/wiz_assets/img/apple-icon.png")" />
+<link rel="icon" type="image/png" href="@Url.Content("/Contents/wiz_assets/img/favicon.png")" />
+
+<!--     Fonts and icons     -->
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+
+
+<!-- CSS Files -->
+
+<link href="~/Contents/tags/typeahead/typeahead.tagging.css" rel="stylesheet" />
+
+<link href="~/Contents/tags/bootstrap-tagsinput.css" rel="stylesheet" />
+<script src="~/Contents/tags/bootstrap-tagsinput.js"></script>
+
+<link href="~/Contents/tags/select2.min.css" rel="stylesheet" />
+<script src="~/Contents/tags/select2.full.min.js"></script>
+<!-- CSS Just for demo purpose, don't include it in your project -->
+<link href="@Url.Content("/Contents/wiz_assets/css/demo.css")" rel="stylesheet" />
+<main>
+
+    <div class="image-container set-full-height" style="background-image: url('@Url.Content("/Contents/wiz_assets/img/wizard-city.jpg")')">
+       
+
+        <!--  Made With Material Kit  -->
+       
+
+        <!--   Big container   -->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8">
+                    <!--      Wizard container        -->
+                    <div class="wizard-container">
+                        <div class="card wizard-card" data-color="purple" id="wizard">
+                            <form>
+                                <!--        You can switch " data-color="rose" "  with one of the next bright colors: "blue", "green", "orange", "purple"        -->
+
+                                <div class="wizard-header">
+                                    <h3 class="wizard-title">
+                                        Diagnose Your Disease
+                                    </h3>
+                                    <h5>SMART HEALTH PREDICTION TO GIVE BETTER HEALTH PREDICTION</h5>
+                                </div>
+                                <div class="wizard-navigation">
+                                    <ul>
+                                        <li><a href="#location" data-toggle="tab" id="symptab">Symptoms</a></li>
+                                        <li><a href="#type" data-toggle="tab" id="condtab">Condition</a></li>
+                                        <li><a href="#facilities" data-toggle="tab">Details</a></li>
+                                        <li><a href="#description" data-toggle="tab">Treatment</a></li>
+                                    </ul>
+                                </div>
+
+                                <div class="tab-content">
+                                    <div class="tab-pane" id="location">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <h3 class="info-text"> Let's start with Symptoms</h3>
+                                            </div>
+                                            <div class="col-sm-3">
+
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Enter Symptoms</label>
+                                                    <input id="symp" class="tags-input form-control" >
+                                                           @*<input type="text" class="form-control tag-input" id="ms1" name="Symptoms" style="color:white !important;" />*@
+                                                    @*<select class="symp form-control" name="symptoms[]" id="symp" multiple="multiple">
+                                                        
+                                                        
+                                                    </select>*@
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-sm-3">
+
+                                            </div>
+                                            <div class="col-sm-12" style="text-align:center">
+                                                <hr />
+                                                <b><big>Some suggestions for you!</big></b><hr />
+                                                
+                                                <div class="col-md-12" id="suggestion">
+
+                                                </div>
+                                                <hr />
+                                            </div>
+                                           
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="type">
+                                        <h4 class="info-text">What type of Disease matches your symptoms? </h4>
+                                        <div class="row">
+                                            <div class="col-md-1"></div>
+                                            <div class="col-md-5" id="disease">
+                                               
+                                               
+                                            </div>
+                                           
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="facilities">
+                                        <h4 class="info-text">Details about Disease.. </h4>
+                                        <div class="row">
+                                            <div class="col-md-1"></div>
+                                            <div class="col-md-10" id="detail">
+
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="description">
+                                        <div class="row">
+                                            
+                                            <div class="row">
+                                                <div class="col-md-1"></div>
+                                                <div class="col-md-10" id="treatment_details" data-did="0">
+
+
+                                                </div>
+
+                                            </div>
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="wizard-footer">
+                                    <div class="pull-right">
+                                        <input type='button' class="btn btn-next btn-fill btn-primary btn-wd" data-click="1" data-did="" id="next" name='next' value='Next' />
+                                        <input type='button' class='btn btn-finish btn-fill btn-primary btn-wd' name='finish' value='Finish' id="finish" />
+                                    </div>
+                                    <div class="pull-left">
+                                        <input type='button' class='btn btn-previous btn-fill btn-default btn-wd' name='previous' value='Previous' />
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </form>
+                        </div>
+                    </div> <!-- wizard container -->
+                </div>
+                <!-- This is custom sidebar-->
+                <div class="col-sm-4" style="width: 390px;">
+                    <!--      Wizard container        -->
+                    <div class="wizard-container" style="position:fixed;width: 390px;">
+                        <div class="card">
+                            
+                                <div class="wizard-header" style="margin-left:30px">
+                                    <h3 class="wizard-title">
+                                        Using Disease Predictor
+                                    </h3>
+                                    <h5></h5>
+                                    <ul style="list-style:square">
+                                        <li >Choose symptoms from suggestions or enter your symptoms and click NEXT</li>
+                                        <li>You'll be shown list of disease and match case</li>
+                                        <li>Choose one disease you want to know its detail</li>
+                                        <li>Finally you can view Treatment details and Some suggestions</li>
+                                    </ul>
+                                    <b>Note:</b><p>This tool does not provide medical advice It is intended for informational purposes only. It is not a substitute for professional medical advice, diagnosis or treatment. Never ignore professional medical advice in seeking treatment because of something you have read on the WebMD Site. If you think you may have a medical emergency, immediately call your doctor</p>
+                                </div>
+                        </div>
+    </div>
+                </div>
+                                <!-- Custom sidebar close-->
+                        </div> <!-- row -->
+                    </div> <!--  big container -->
+
+
+                </div>
+
+
+
+
+</main>
+<script>
+    $('#sympp').tagsinput({
+        typeahead: {
+            source: function (query) {
+                return $.get('http://localhost:59427/Disease/getSymptomsData');
+            }
+        }
+    });
+    $("#finish").click(function () {
+       
+        window.location.reload(true);
+    });
+   
+    $("#symptab").click(function () {
+        $("#next").data('click', 1)
+    });
+    $("#condtab").click(function () {
+        $("#next").data('click', 2)
+    });
+
+
+    $(document).ready(function () {
+        $('.symp').select2();
+    });
+    var res = "";
+    $.ajax({
+        type: 'POST',
+        url: window.location.origin + "/Disease/getSymptomsData",
+        data: '',
+        beforeSend: function(){
+            $("#loading").show();
+        },
+        success: function (data) {
+            console.log(data);
+            //$(".symp").select2({
+            //    data: data
+            //});
+            var tagsource = data;
+            $('#symp').tagging(tagsource);
+            
+            
+            fillsuggestion(data);
+
+        },
+        complete: function () {
+            $("#loading").hide();
+        },
+        error: function (data) {
+            alert('Error Fetching Symptoms');
+        }
+    });
+    
+    function fillsuggestion(data) {
+        data = data.slice(0, 5);
+        var html = "";
+        for (var i = 0; i < data.length; i++) {
+            var html = html + "<button class='btn btn-sm btn-primary fill_suggestion_content' onclick='fillsug(\"" + data[i] + "\")' style='margin-right:15px;'>" + data[i] + "</button>";
+
+        }
+        
+        $("#suggestion").html(html);
+    }
+
+    $("#symp").on('itemAdded', function (event) {
+        alert(event.item);
+    });
+
+    //function fillsug( i)
+    //{
+    //    var temp = $("#symp").val();
+    //    var temp = temp +","+ i;
+    //    $("#symp").tagsinput('add', 'some tag');
+
+        
+    //}
+     
+    $("#next").click(function () {
+        
+        var val = $("#next").data('click');
+        console.log(val);
+        if(val==1)
+        {
+            var dta = $("#symp").val();
+            console.log(dta);
+            $.ajax({
+                type: 'POST',
+                url: window.location.origin + "/Prediction/DiseasePredict",
+                data: { symp: dta },
+                beforeSend: function () {
+                    $("#loading").show();
+                },
+                success: function (data) {
+                    console.log(data);
+                    
+                    $("#disease").html(data);
+                    $("#next").data('click', 2);
+
+                },
+                error: function (data) {
+                    alert('Error Fetching Symptoms');
+                },
+                complete: function () {
+                    $("#loading").hide();
+                },
+            });
+            $("#next").data('click', 2);
+        }
+        else if (val == 2) {
+           
+            $("#next").data('click', 3);
+        }
+        else if (val == 3) {
+
+            $("#next").data('click', 4)
+        }
+        else if (val == 4) {
+            var url = window.location.origin + "/Prediction/treatment";
+            var tr = $(this).data("did");
+            
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: { did:tr  },
+                beforeSend: function () {
+                    $("#loading").show();
+                },
+                success: function (data) {
+                    console.log(data);
+                    
+                    $("#treatment_details").html(data);
+
+                },
+                error: function (data) {
+                    alert('Error Fetching Treatment Details');
+                },
+                complete: function () {
+                    $("#loading").hide();
+                }
+            });
+            $("#next").data('click', 5)
+        }
+        else if (val == 5) {
+            window.location.reload();
+        }
+        
+    })
+
+
+    
+</script>
+<script src="@Url.Content("/Contents/wiz_assets/js/jquery.bootstrap.js")" type="text/javascript"></script>
+
+<!--  Plugin for the Wizard -->
+<script src="~/Contents/tags/typeahead/typeahead.bundle.min.js"></script>
+<script src="~/Contents/tags/typeahead/typeahead.tagging.js"></script>
+
+
+<!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
+<script src="@Url.Content("/Contents/wiz_assets/js/jquery.validate.min.js")"></script>
+

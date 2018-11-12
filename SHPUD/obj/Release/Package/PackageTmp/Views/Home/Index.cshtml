@@ -1,0 +1,200 @@
+﻿@model List<SHPUD.Models.TBL_DOCTOR>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Layout.cshtml";
+    string ram = "ram lila";
+}
+<style>
+    .book{
+        background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    }
+</style>
+
+<main>
+    
+    <div class="hero_home version_1">
+        <div class="content" style="background: linear-gradient(to right, rgba(73,155,234,0.54) 0%, rgba(73,155,234,0.54) 0%, rgba(32,124,229,0.53) 100%),url(@Url.Content("/Contents/img/slider_home.png")">
+            <h3>Find disease by symptoms!</h3>
+            <p>
+                Enter Symptoms You are getting to Search Relevant Disease
+            </p>
+            <form method="get" action="~/User/searchList/">
+                <div id="custom-search-input">
+                    <div class="input-group">
+                        <input type="text" class="search-query" id="search" placeholder="Enter Disease name, Symptom..." name="searchKey">
+                        <input type="submit" class="btn_search" value="Search">
+                    </div>
+                    <ul>
+                        <li>
+                            <input type="radio" id="disease" name="searchfor" value="Disease" onclick="$('#search').attr('placeholder','Enter Disease name, Symptom...');" checked >
+                            <label for="disease" data-toggle="tooltip" title="Search for Disease">Disease</label>
+                        </li>
+                        <li>
+                            <input type="radio" id="doctor" name="searchfor" value="doctor" onclick="$('#search').attr('placeholder', 'Enter Name, Specialization ....');" >
+                            <label for="doctor" data-toggle="tooltip" title="Search for Doctor">Doctor</label>
+                        </li>
+                        <li>
+                            <input type="radio" id="clinic" name="searchfor" value="hospital" onclick="$('#search').attr('placeholder', 'Enter Hospital name, Field ....');">
+                            <label for="clinic" data-toggle="tooltip" title="Search for Hospitals">Hospitals</label>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- /Hero -->
+
+    <div class="container margin_120_95">
+        <div class="main_title">
+            <h2>Discover the <strong>online</strong> appointment!</h2>
+            <p>Providing online appointment with Doctors at a scheduled time.</p>
+        </div>
+        <div class="row add_bottom_30">
+            <div class="col-lg-4">
+                <div class="box_feat book" id="icon_1" >
+                    <span><i class="fas fa-arrow-right"></i></span>
+                    <h3>Find a Doctor</h3>
+                    <p>Find specialized doctor of specific location or specialization.</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="box_feat book" id="icon_2">
+                    <span><i class="fas fa-arrow-right"></i></span>
+                    <h3>View profile</h3>
+                    <p>View complete profile of any doctors or hospitals.</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="box_feat book" id="icon_3">
+                    <h3>Book a visit</h3>
+                    <p>Send booking message with date and time for any doctors.</p>
+                </div>
+            </div>
+        </div>
+        <!-- /row -->
+        <p class="text-center"><a href="@Url.Action("listDoctors/","User")" class="btn_1 medium">Find Doctor</a></p>
+
+    </div>
+    <!-- /container -->
+
+    <div class="bg_color_1">
+        <div class="container margin_120_95">
+            <div class="main_title">
+                <h2>Most Viewed doctors</h2>
+                <p></p>
+            </div>
+            <div id="reccomended" class="owl-carousel owl-theme">
+
+               @for (int i = 0; i < Model.Count; i++)
+               { 
+                <div class="item">
+                    <a href="@Url.Action("doctorDetails/","User", new { id = Model[i].DOCTOR_ID })">
+                        <div class="views"><i class="icon-eye-7"></i>@Model[i].Views</div>
+                        <div class="title">
+                            <h4>Dr. @Model[i].DOCTOR_NAME<em>@Model[i].SPECIALIZATION</em></h4>
+                        @{ 
+                            var image = "";
+                            if (Model[i].DOCTOR_IMAGE != "")
+                            {
+                                image = Url.Content("/Contents/upload/Doctor/") + Model[i].DOCTOR_IMAGE;
+                            }
+                            else
+                            {
+                                image = Url.Content("/Contents/upload/Doctor/default.jpg");
+                            }
+                        }
+                        
+                        </div><img src="@image" alt="">
+                    </a>
+                </div>
+               }
+            
+            </div>
+            <!-- /carousel -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /white_bg -->
+
+    <div class="container margin_120_95">
+        <div class="main_title">
+            <h2>Find your doctor or clinic</h2>
+            <p>Search doctor according to their location or specialization.</p>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-xl-4 col-lg-5 col-md-6">
+                <div class="list_home">
+                    <div class="list_title">
+                        <i class="icon_pin_alt"></i>
+                        <h3>Search by City or Zone</h3>
+                    </div>
+                    <ul>
+                        <li><a href="@Url.Action("listDoctors/","User", new { location = "Butwal" })"><strong>1</strong>Butwal</a></li>
+                        <li><a href="@Url.Action("listDoctors/","User", new { location = "Kathmandu" })"><strong>2</strong>Kathmandu</a></li>
+                        <li><a href="@Url.Action("listDoctors/","User", new { location = "Bhairahawa" })"><strong>3</strong>Bhairahawa</a></li>
+                        <li><a href="@Url.Action("listDoctors/","User", new { location = "Bhaktapur" })"><strong>4</strong>Bhaktapur</a></li>
+                        <li><a href="@Url.Action("listDoctors/","User", new { location = "Palpa" })"><strong>5</strong>Palpa</a></li>
+                        <li><a href="@Url.Action("listDoctors/","User", new { location = "Mechi" })"><strong>6</strong>Mechi</a></li>
+                        <li><a href="@Url.Action("listDoctors/","User", new { location = "Karnali" })"><strong>7</strong>Karnali</a></li>
+                        <li><a href="@Url.Action("listDoctors/","User", new { location = "Rapti" })"><strong>8</strong>Rapti</a></li>
+                        <li><a href="@Url.Action("listDoctors/","User", new { location = "Pokhara" })"><strong>9</strong>Pokhara</a></li>
+                       
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-5 col-md-6">
+                <div class="list_home">
+                    <div class="list_title">
+                        <i class="icon_archive_alt"></i>
+                        <h3>Search by type</h3>
+                    </div>
+                    <ul>
+                        <li><a href="@Url.Action("listDoctors/","User", new { type = "Allergist" })"><strong>1</strong>Allergist</a></li>
+                        <li><a href="@Url.Action("listDoctors/","User", new { type = "Cardiologist" })"><strong>2</strong>Cardiologist</a></li>
+                        <li><a href="@Url.Action("listDoctors/","User", new { type = "Chiropractor" })"><strong>3</strong>Chiropractor</a></li>
+                        <li><a href="@Url.Action("listDoctors/","User", new { type = "Dentist" })"><strong>4</strong>Dentist</a></li>
+                        <li><a href="@Url.Action("listDoctors/","User", new { type = "Dermatologist" })"><strong>5</strong>Dermatologist</a></li>
+                        <li><a href="@Url.Action("listDoctors/","User", new { type = "Gastroenterologist" })"><strong>6</strong>Gastroenterologist</a></li>
+                        <li><a href="@Url.Action("listDoctors/","User", new { type = "Ophthalmologist" })"><strong>7</strong>Ophthalmologist</a></li>
+                        <li><a href="@Url.Action("listDoctors/","User", new { type = "Optometrist" })"><strong>8</strong>Optometrist</a></li>
+                        <li><a href="@Url.Action("listDoctors/","User", new { type = "Pediatrician" })"><strong>9</strong>Pediatrician</a></li>
+                       
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+
+    @*<div id="app_section">
+        <div class="container">
+            <div class="row justify-content-around">
+                <div class="col-md-5">
+                    <p><img src="@Url.Content("/Contents/img/app_img.svg")" alt="" class="img-fluid" width="500" height="433"></p>
+                </div>
+                <div class="col-md-6">
+                    <small>Application</small>
+                    <h3>Download <strong>Findoctor App</strong> Now!</h3>
+                    <p class="lead">Tota omittantur necessitatibus mei ei. Quo paulo perfecto eu, errem percipit ponderum no eos. Has eu mazim sensibus. Ad nonumes dissentiunt qui, ei menandri electram eos. Nam iisque consequuntur cu.</p>
+                    <div class="app_buttons wow" data-wow-offset="100">
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 43.1 85.9" style="enable-background:new 0 0 43.1 85.9;" xml:space="preserve">
+                        <path stroke-linecap="round" stroke-linejoin="round" class="st0 draw-arrow" d="M11.3,2.5c-5.8,5-8.7,12.7-9,20.3s2,15.1,5.3,22c6.7,14,18,25.8,31.7,33.1" />
+                        <path stroke-linecap="round" stroke-linejoin="round" class="draw-arrow tail-1" d="M40.6,78.1C39,71.3,37.2,64.6,35.2,58" />
+                        <path stroke-linecap="round" stroke-linejoin="round" class="draw-arrow tail-2" d="M39.8,78.5c-7.2,1.7-14.3,3.3-21.5,4.9" />
+						</svg>
+                        <a href="#0" class="fadeIn"><img src="@Url.Content("/Contents/img/apple_app.png")" alt="" width="150" height="50" data-retina="true"></a>
+                        <a href="#0" class="fadeIn"><img src="@Url.Content("/Contents/img/google_play_app.png")" alt="" width="150" height="50" data-retina="true"></a>
+                    </div>
+                </div>
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /app_section -->*@
+</main>
+

@@ -1,0 +1,56 @@
+﻿@model SHPUD.Models.TBL_USER
+@{
+    ViewBag.Title = "Verify";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+<main>
+    <div id="breadcrumb">
+        <div class="container">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">User</a></li>
+                <li>Verify</li>
+            </ul>
+        </div>
+    </div>
+    <!-- /breadcrumb -->
+
+    <div class="container margin_120">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div id="confirm">
+                    <div class="icon icon--order-success svg add_bottom_15">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="72" height="72">
+                            <g fill="none" stroke="#8EC343" stroke-width="2">
+                                <circle cx="36" cy="36" r="35" style="stroke-dasharray:240px, 240px; stroke-dashoffset: 480px;"></circle>
+                                <path d="M17.417,37.778l9.93,9.909l25.444-25.393" style="stroke-dasharray:50px, 50px; stroke-dashoffset: 0px;"></path>
+                            </g>
+                        </svg>
+                    </div>
+                    <h2>Verify</h2>
+                    @using (Html.BeginForm("Verify", "User", FormMethod.Post, new { @id = "userform", @enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <p>Please Enter Verification Code sent to your Email Address </p>
+                       
+                        <center>
+                            @Html.Raw(ViewBag.error)
+                            @Html.Raw(ViewBag.success)
+                            <br />
+                            <p>
+                                @Html.EditorFor(model => model.TOKEN, new { htmlAttributes = new { @class = "form-control", @style = "width:200px", @placeholder = "Enter 6-digit Code" } })
+                        </p>
+                            Didn't get code?<a href="@Url.Action("Resend","User")"> Resend</a><br />
+                            <button type="submit" class="btn btn-primary btn-lg" text-align="center">Verify</button>
+                        </center>
+
+                    } </div>
+            </div>
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</main>
+
+
+

@@ -1,0 +1,57 @@
+﻿@model SHPUD.Models.TBL_USER
+       
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        <h4 class="modal-title" id="myModalLabel">More About <strong> @Html.DisplayFor(model => model.NAME)</strong></h4>
+    </div>
+    <div class="modal-body">
+        <center>
+            
+            @{var today = DateTime.Today;
+                var age = today.Year - Model.DOB.Year;
+                if (Model.DOB > today.AddYears(-age))
+                {
+                    age--;
+                }
+
+            }
+            @{ 
+                var date = Model.DOB.ToString("MM/dd/yyyy");
+                var image =Url.Content("/Contents/upload/user/")+ Model.IMAGE;
+            }
+            <img src="@image" name="aboutme" title="@Html.DisplayFor(model => model.IMAGE)" width="140" height="140" border="0" class="img-circle"></a>
+            <h3 class="media-heading">@Html.DisplayFor(model => model.NAME)</h3>
+            <label class="badge bg-green" style="font-size:16px;"><strong>@age years old </strong></label>
+            <label class="badge bg-blue" style="font-size:16px;"><strong>@Html.DisplayFor(model => model.GENDER) </strong></label>
+            <label class="badge bg-yellow" style="font-size:16px;"><strong>Date of Birth : @date.ToString()</strong></label>
+            
+        </center>
+        <hr>
+        <center>
+            <p class="text-left">
+                <h4 style="text-align:left">Details: </h4>
+                <div class="row" style="text-align:left">
+                    <div class="col-md-2">
+                        <p><strong>Address :</strong></p> 
+                        <p><strong>E-mail : </strong></p>
+                        <p><strong>Contact :</strong></p>
+                    </div>
+                    <div class="col-md-4"><p>@Html.DisplayFor(model => model.ADDRESS)</p>
+            <p> @Html.DisplayFor(model => model.EMAIL)</p>
+            <p> @Html.DisplayFor(model => model.CONTACT)</p>
+                    </div>
+                    <div class="col-md-6"></div>
+                </div>
+                
+            </p>
+            <br>
+        </center>
+    </div>
+    <div class="modal-footer">
+        <center>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </center>
+    </div>
+</div>
+

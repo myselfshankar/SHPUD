@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ccef9b2aa6c8490a93e3324d19de7f1f" Name="Diagram1">
+        <EntityTypeShape EntityType="SHPUDModel.TBL_ADMIN" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SHPUDModel.TBL_DISEASE" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SHPUDModel.TBL_DISEASE_DETAILS" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SHPUDModel.TBL_DOCTOR" Width="1.5" PointX="7.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SHPUDModel.TBL_HOSPITAL" Width="1.5" PointX="4.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SHPUDModel.TBL_USER" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SHPUDModel.TBL_USER_HEALTH_RECORD" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SHPUDModel.TBL_DOCTOR_DETAILS" Width="1.5" PointX="9" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SHPUDModel.TBL_HOSPITAL_DETAILS" Width="1.5" PointX="7.375" PointY="7.75" />
+        <EntityTypeShape EntityType="SHPUDModel.CONTACT_EMAILS" Width="1.5" PointX="9.375" PointY="0.75" />
+        <EntityTypeShape EntityType="SHPUDModel.TBL_BOOKMARK" Width="1.5" PointX="3.375" PointY="9.75" />
+        <EntityTypeShape EntityType="SHPUDModel.TBL_BOOKING" Width="1.5" PointX="9.375" PointY="7.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

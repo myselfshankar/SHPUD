@@ -1,0 +1,69 @@
+﻿@model IEnumerable<SHPUD.Models.TBL_USER>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NAME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ADDRESS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PASSWORD)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EMAIL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GENDER)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DOB)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CONTACT)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IMAGE)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NAME)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ADDRESS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PASSWORD)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EMAIL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GENDER)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DOB)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CONTACT)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IMAGE)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.USER_ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.USER_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.USER_ID })
+        </td>
+    </tr>
+}
+
+</table>
